@@ -76,7 +76,9 @@ public class Player {
         return numHouses;
     }
 
-    public void setPosition(int position) {}
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
 
     /**
@@ -204,6 +206,7 @@ public class Player {
      * @param amount int
      */
     public void addToBalance(int amount) {
+        this.balance += amount;
     }
 
     /**

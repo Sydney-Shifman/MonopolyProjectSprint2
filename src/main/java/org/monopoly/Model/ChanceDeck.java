@@ -26,7 +26,6 @@ public class ChanceDeck extends CardDeck {
         chanceCards.add("Advance to Illinois Avenue. If you pass Go, collect $200.");
         chanceCards.add("Advance to St. Charles Place. If you pass Go, collect $200.");
         chanceCards.add("Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay wonder twice the rental to which they are otherwise entitled.");
-        chanceCards.add("Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay wonder twice the rental to which they are otherwise entitled.");
         chanceCards.add("Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times amount thrown.");
         chanceCards.add("Bank pays you dividend of $50.");
         chanceCards.add("Get Out of Jail Free.");
@@ -52,5 +51,14 @@ public class ChanceDeck extends CardDeck {
         String card = this.drawPile.removeLast();
         this.discardPile.add(card);
         return card;
+    }
+
+
+    @Override
+    public void executeStrategy(Player player) {
+    }
+
+    // todo add a method for the player to use a chance card
+    public void executeStrategy(Player player, String card) {
     }
 }

@@ -6,6 +6,7 @@ import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Exceptions.NoSuchPropertyException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A class representing a player in the Monopoly game.
@@ -18,10 +19,15 @@ public class Player {
     private int balance;
     private boolean inJail;
     private Token token;
+    private int numHouses;
+    private int numHotels;
     private ArrayList<String> propertiesOwned;
     private ArrayList<String> propertiesMortgaged;
     private ArrayList<String> monopolies;
-    private ArrayList<String> communityChestCards;
+    private ArrayList<String> cards;
+    private ArrayList<String> chanceCards;
+    private ArrayList<String> colorGroups;
+
 
     public Player(String name, Token token) {
         this.name = name;
@@ -30,10 +36,14 @@ public class Player {
         this.inJail = false;
         token.setOwner(this);
         this.position = 0;
+        this.numHouses = 0;
+        this.numHotels = 0;
         this.propertiesOwned = new ArrayList<>();
         this.propertiesMortgaged = new ArrayList<>();
         this.monopolies = new ArrayList<>();
-        this.communityChestCards = new ArrayList<>();
+        this.cards = new ArrayList<>();
+        this.chanceCards = new ArrayList<>();
+        this.colorGroups = new ArrayList<>();
     }
 
     /**
@@ -53,6 +63,18 @@ public class Player {
 
     public Token getPlayerToken() {
         return token;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public int getNumHotels() {
+        return numHotels;
+    }
+
+    public int getNumHouses() {
+        return numHouses;
     }
 
     public void setPosition(int position) {}
@@ -87,6 +109,14 @@ public class Player {
      */
     public boolean isInJail() {
         return inJail;
+    }
+
+    /**
+     * Releases player from jail
+     */
+    public void releaseFromJail() {
+        inJail = false;
+        System.out.println(name + " has been released from jail!");
     }
 
     /**
@@ -195,7 +225,7 @@ public class Player {
     }
 
     public void addCommunityChestCard(String card) {
-        communityChestCards.add(card);
+        cards.add(card);
     }
 
     // todo add a method for the player to use a community chest card

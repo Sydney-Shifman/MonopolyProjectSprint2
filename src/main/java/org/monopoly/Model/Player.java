@@ -10,6 +10,7 @@ import java.util.ArrayList;
 /**
  * A class representing a player in the Monopoly game.
  * More functionality will be added
+ * @author walshj05, crevelings
  */
 public class Player {
     private String name;

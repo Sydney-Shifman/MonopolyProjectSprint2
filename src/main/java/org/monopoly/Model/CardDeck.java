@@ -1,5 +1,7 @@
 package org.monopoly.Model;
 
+import org.monopoly.Controller.Strategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -8,7 +10,7 @@ import java.util.Collections;
  * This class is responsible for creating a deck of cards and
  * has abstract methods for the basic functions of a deck of cards.
  */
-public abstract class CardDeck {
+public abstract class CardDeck implements Strategy {
     protected ArrayList<String> drawPile;
     protected ArrayList<String> discardPile;
     protected ArrayList<String> unavailableCards;

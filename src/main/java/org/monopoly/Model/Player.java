@@ -6,7 +6,6 @@ import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Exceptions.NoSuchPropertyException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A class representing a player in the Monopoly game.

@@ -6,6 +6,7 @@ import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Exceptions.NoSuchPropertyException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A class representing a player in the Monopoly game.
@@ -22,7 +23,7 @@ public class Player {
     private int numHotels;
     private ArrayList<String> propertiesOwned;
     private ArrayList<String> propertiesMortgaged;
-    private ArrayList<String> monopolies;
+    private HashMap<String, Integer> monopolies;
     private ArrayList<String> cards;
 // todo add functionality for the player to add a house or hotel to a property. must have a monopoly on the property to do so
 
@@ -37,7 +38,7 @@ public class Player {
         this.numHotels = 0;
         this.propertiesOwned = new ArrayList<>();
         this.propertiesMortgaged = new ArrayList<>();
-        this.monopolies = new ArrayList<>();
+        this.monopolies = new HashMap<>();
         this.cards = new ArrayList<>();
     }
 
@@ -197,7 +198,7 @@ public class Player {
      * @return boolean
      */
     public boolean hasMonopoly(String colorGroup) {
-        return monopolies.contains(colorGroup);
+        return monopolies.containsKey(colorGroup);
     }
 
     /**
@@ -205,7 +206,7 @@ public class Player {
      * @param property String
      * @throws HouseCannotBeBuiltException exception
      */
-    public void addHouse(String property) throws HouseCannotBeBuiltException {
+    public void addHouse(String property, String colorGroup) throws HouseCannotBeBuiltException {
     }
 
     /**
@@ -283,6 +284,9 @@ public class Player {
         return name + " (Token: " + token.getName() + ")";
     }
 
+    /**
+     * Checks if the player has a monopoly,
+     */
     private void checkForMonopoly() {
         ArrayList<String> currMonopolies = new ArrayList<>();
         if (propertiesOwned.contains("Mediterranean Avenue") && propertiesOwned.contains("Baltic Avenue")) {
@@ -309,6 +313,14 @@ public class Player {
         if (propertiesOwned.contains("Park Place") && propertiesOwned.contains("Boardwalk")) {
             currMonopolies.add("darkBlue");
         }
-        monopolies = currMonopolies;
+        updateMonopolies(currMonopolies);
+    }
+
+    private void updateMonopolies(ArrayList<String> monopolies) {
+        for (String monopoly : monopolies) {
+            if (!this.monopolies.containsKey(monopoly)) {
+                this.monopolies.put(monopoly, 0);
+            }
+        }
     }
 }

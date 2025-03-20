@@ -111,8 +111,9 @@ public class CommunityChestDeck extends CardDeck {
                 player.addToBalance(25);
                 break;
             case "You are assessed for street repair. $40 per house. $115 per hotel":
-                int totalCharge = (115 * player.getNumHotels()) + (40 * player.getNumHotels());
-                player.subtractFromBalance(totalCharge);
+
+//                int totalCharge = (115 * player.getNumHotels()) + (40 * player.getNumHotels());
+//                player.subtractFromBalance(totalCharge);
                 break;
             case "You have won second prize in a beauty contest. Collect $10":
                 player.addToBalance(10);

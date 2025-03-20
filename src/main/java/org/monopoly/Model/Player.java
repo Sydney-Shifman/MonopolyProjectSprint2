@@ -6,7 +6,6 @@ import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Exceptions.NoSuchPropertyException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A class representing a player in the Monopoly game.
@@ -25,9 +24,7 @@ public class Player {
     private ArrayList<String> propertiesMortgaged;
     private ArrayList<String> monopolies;
     private ArrayList<String> cards;
-    private ArrayList<String> chanceCards;
-    private ArrayList<String> colorGroups;
-
+// todo add functionality for the player to add a house or hotel to a property. must have a monopoly on the property to do so
 
     public Player(String name, Token token) {
         this.name = name;
@@ -42,8 +39,6 @@ public class Player {
         this.propertiesMortgaged = new ArrayList<>();
         this.monopolies = new ArrayList<>();
         this.cards = new ArrayList<>();
-        this.chanceCards = new ArrayList<>();
-        this.colorGroups = new ArrayList<>();
     }
 
     /**
@@ -61,10 +56,6 @@ public class Player {
         return position;
     }
 
-    public Token getPlayerToken() {
-        return token;
-    }
-
     public int getBalance() {
         return balance;
     }
@@ -77,7 +68,9 @@ public class Player {
         return numHouses;
     }
 
-    public void setPosition(int position) {}
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
 
     /**
@@ -124,6 +117,8 @@ public class Player {
      * @param dice Dice object
      */
     public void takeTurn (Dice dice) {
+        // todo implement player turn
+
 //        if (inJail) {
 //            System.out.println(name + " is in jail and cannot roll.");
 //        }
@@ -157,7 +152,14 @@ public class Player {
      * @param property String
      * @throws InsufficientFundsException exception
      */
-    public void purchaseProperty(String property) throws InsufficientFundsException {
+    public void purchaseProperty(String property, int price) throws InsufficientFundsException {
+        if (balance >= price) {
+            propertiesOwned.add(property);
+            balance -= price;
+            checkForMonopoly();
+        } else {
+            throw new InsufficientFundsException("Insufficient funds to purchase " + property);
+        }
     }
 
     /**
@@ -165,7 +167,14 @@ public class Player {
      * @param property String
      * @throws NoSuchPropertyException exception
      */
-    public void mortgageProperty(String property) throws NoSuchPropertyException {
+    public void mortgageProperty(String property, int mortgageCost) throws NoSuchPropertyException {
+        if (propertiesOwned.contains(property)) {
+            propertiesOwned.remove(property);
+            propertiesMortgaged.add(property);
+            balance += mortgageCost;
+        } else {
+            throw new NoSuchPropertyException("You do not own " + property);
+        }
     }
 
     /**
@@ -173,15 +182,22 @@ public class Player {
      * @param property String
      * @throws NoSuchPropertyException exception
      */
-    public void sellProperty(String property) throws NoSuchPropertyException {
+    public void sellProperty(String property, int propertyCost) throws NoSuchPropertyException {
+        if (propertiesOwned.contains(property)) {
+            propertiesOwned.remove(property);
+            balance += propertyCost;
+            checkForMonopoly();
+        } else {
+            throw new NoSuchPropertyException("You do not own " + property);
+        }
     }
 
     /**
      * Checks if the player has a monopoly
      * @return boolean
      */
-    public boolean hasMonopoly() {
-        return false;
+    public boolean hasMonopoly(String colorGroup) {
+        return monopolies.contains(colorGroup);
     }
 
     /**
@@ -205,6 +221,7 @@ public class Player {
      * @param amount int
      */
     public void addToBalance(int amount) {
+        this.balance += amount;
     }
 
     /**
@@ -212,8 +229,12 @@ public class Player {
      * @param amount int
      */
     public void subtractFromBalance(int amount) {
+        if (this.balance - amount < 0) {
+            this.balance = 0;
+            return;
+        }
+        this.balance -= amount;
     }
-
 
     /**
      * Checks if the player has a certain property
@@ -224,13 +245,70 @@ public class Player {
         return propertiesOwned.contains(property);
     }
 
-    public void addCommunityChestCard(String card) {
+    /**
+     * Adds a community chest card to the player's hand
+     * @param card String
+     */
+    public void addCard(String card) {
         cards.add(card);
     }
 
-    // todo add a method for the player to use a community chest card
+    /**
+     * Removes a community chest card from the player's hand
+     * @param card String
+     */
+    public void removeCard(String card) {
+        cards.remove(card);
+    }
+
+    /**
+     * Checks if the player has a certain community chest card
+     * @param card String
+     * @return boolean
+     */
+    public boolean hasCard(String card) {
+        return cards.contains(card);
+    }
+
+    /**
+     * Checks if the player is bankrupt
+     * @return boolean
+     */
+    public boolean isBankrupt() {
+        return balance == 0;
+    }
+
     @Override
     public String toString() {
         return name + " (Token: " + token.getName() + ")";
+    }
+
+    private void checkForMonopoly() {
+        ArrayList<String> currMonopolies = new ArrayList<>();
+        if (propertiesOwned.contains("Mediterranean Avenue") && propertiesOwned.contains("Baltic Avenue")) {
+            currMonopolies.add("brown");
+        }
+        if (propertiesOwned.contains("Oriental Avenue") && propertiesOwned.contains("Vermont Avenue") && propertiesOwned.contains("Connecticut Avenue")) {
+            currMonopolies.add("lightBlue");
+        }
+        if (propertiesOwned.contains("St. Charles Place") && propertiesOwned.contains("States Avenue") && propertiesOwned.contains("Virginia Avenue")) {
+            currMonopolies.add("pink");
+        }
+        if (propertiesOwned.contains("St. James Place") && propertiesOwned.contains("Tennessee Avenue") && propertiesOwned.contains("New York Avenue")) {
+            currMonopolies.add("orange");
+        }
+        if (propertiesOwned.contains("Kentucky Avenue") && propertiesOwned.contains("Indiana Avenue") && propertiesOwned.contains("Illinois Avenue")) {
+            currMonopolies.add("red");
+        }
+        if (propertiesOwned.contains("Atlantic Avenue") && propertiesOwned.contains("Ventnor Avenue") && propertiesOwned.contains("Marvin Gardens")) {
+            currMonopolies.add("yellow");
+        }
+        if (propertiesOwned.contains("Pacific Avenue") && propertiesOwned.contains("North Carolina Avenue") && propertiesOwned.contains("Pennsylvania Avenue")) {
+            currMonopolies.add("green");
+        }
+        if (propertiesOwned.contains("Park Place") && propertiesOwned.contains("Boardwalk")) {
+            currMonopolies.add("darkBlue");
+        }
+        monopolies = currMonopolies;
     }
 }

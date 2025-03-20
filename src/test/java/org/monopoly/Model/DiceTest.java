@@ -44,8 +44,8 @@ class DiceTest {
     @Test
     void testRollDoubles() {
         Dice dice = new Dice();
-        boolean rolledDoubles = false;
-        for (int i = 0; i < 100; i++) {
+        boolean rolledDoubles;
+        while (true) { // checks that eventually there will be a double rolled
             int[] firstRoll = dice.roll();
             int[] secondRoll = dice.roll();
             if (firstRoll[0] == secondRoll[0] && firstRoll[1] == secondRoll[1]) {

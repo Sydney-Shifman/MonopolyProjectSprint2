@@ -60,12 +60,12 @@ class DiceTest {
     void testTotalDoublesRolled() {
         Dice dice = new Dice();
         Token token = new Token("Thimble", "Thimble.png");
-        Player player = new Player("Alice", token);
+        HumanPlayer humanPlayer = new HumanPlayer("Alice", token);
         int totalDoubles = 0;
 
         // Simulate 100 turns
         for (int i = 0; i < 100; i++) {
-            player.takeTurn(dice);
+            humanPlayer.takeTurn(dice);
             if (dice.isDouble()) {
                 totalDoubles++;
             }
@@ -79,11 +79,11 @@ class DiceTest {
     void testConsecutiveDoubles() {
         Dice dice = new Dice();
         Token token = new Token("Thimble", "Thimble.png");
-        Player player = new Player("Alice", token);
+        HumanPlayer humanPlayer = new HumanPlayer("Alice", token);
         int maxConsecutiveDoubles = 0;
 
         for (int i = 0; i < 100; i++) {
-            player.takeTurn(dice);
+            humanPlayer.takeTurn(dice);
             if (dice.isDouble()) {
                 maxConsecutiveDoubles = Math.max(maxConsecutiveDoubles, Dice.getNumDoubles());
             } else {
@@ -110,12 +110,12 @@ class DiceTest {
     void testJailFunctionality() {
         Dice dice = new Dice();
         Token token = new Token("Thimble", "Thimble.png");
-        Player player = new Player("Alice", token);
+        HumanPlayer humanPlayer = new HumanPlayer("Alice", token);
         boolean wentToJail = false;
 
         for (int i = 0; i < 100; i++) {
-            player.takeTurn(dice);
-            if (player.isInJail()) {
+            humanPlayer.takeTurn(dice);
+            if (humanPlayer.isInJail()) {
                 wentToJail = true;
                 break;
             }

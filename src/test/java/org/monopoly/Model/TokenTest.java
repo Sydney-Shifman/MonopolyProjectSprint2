@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TokenTest {
     private Token token;
-    private Player player;
+    private HumanPlayer humanPlayer;
 
     @BeforeEach
     void setUp() {
         token = new Token("Top hat", "TokenPNGs/TopHat.png");
-        player = new Player("Alice", token);
+        humanPlayer = new HumanPlayer("Alice", token);
     }
 
     @Test
@@ -22,15 +22,15 @@ class TokenTest {
 
     @Test
     void testTokenOwner() {
-        assertEquals(player, token.getOwner(), "Token owner should be Alice.");
+        assertEquals(humanPlayer, token.getOwner(), "Token owner should be Alice.");
         assertEquals("Alice", token.getOwner().getName(), "Token owner's name should be Alice.");
     }
 
     @Test
     void testPlayerToken() {
-        System.out.println("Player: " + player);
-        System.out.println("Player's token: " + player.getToken());
+        System.out.println("Player: " + humanPlayer);
+        System.out.println("Player's token: " + humanPlayer.getToken());
         System.out.println("Token: " + token);
-        assertEquals(token, player.getToken(), "Player's token should be the Top hat.");
+        assertEquals(token, humanPlayer.getToken(), "Player's token should be the Top hat.");
     }
 }

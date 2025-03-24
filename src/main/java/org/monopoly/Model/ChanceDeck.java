@@ -55,10 +55,10 @@ public class ChanceDeck extends CardDeck {
 
 
     @Override
-    public void executeStrategy(Player player) {
+    public void executeStrategy(HumanPlayer humanPlayer) {
     }
 
     // todo add a method for the player to use a chance card
-    public void executeStrategy(Player player, String card) {
+    public void executeStrategy(HumanPlayer humanPlayer, String card) {
     }
 }

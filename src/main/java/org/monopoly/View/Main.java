@@ -53,11 +53,11 @@ public class Main {
 
         // Demonstrate the Dice class words.
         System.out.println("Dice Functionality:");
-        Player player = new Player("Alice", new Token("Thimble", "Thimble.png"));
+        HumanPlayer humanPlayer = new HumanPlayer("Alice", new Token("Thimble", "Thimble.png"));
         Dice dice = new Dice();
 
         for (int i = 0; i < 20; i++) {
-            player.takeTurn(dice);
+            humanPlayer.takeTurn(dice);
         }
     }
 }

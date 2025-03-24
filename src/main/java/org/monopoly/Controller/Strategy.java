@@ -1,6 +1,6 @@
 package org.monopoly.Controller;
 
-import org.monopoly.Model.Player;
+import org.monopoly.Model.HumanPlayer;
 
 /**
  * Strategy interface for implementing different player strategies in the Monopoly game.
@@ -9,7 +9,7 @@ import org.monopoly.Model.Player;
 public interface Strategy {
     /**
      * Executes the strategy for the given player.
-     * @param player The player to execute the strategy for.
+     * @param humanPlayer The player to execute the strategy for.
      */
-    void executeStrategy(Player player);
+    void executeStrategy(HumanPlayer humanPlayer);
 }

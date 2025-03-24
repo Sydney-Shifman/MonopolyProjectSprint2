@@ -3,7 +3,7 @@ package org.monopoly.Model;
 public class Token {
     private final String name;
     private final String icon;
-    private Player owner;
+    private HumanPlayer owner;
 
     /**
      * Constructor for the Token class.
@@ -20,11 +20,11 @@ public class Token {
         return name;
     }
 
-    public Player getOwner() {
+    public HumanPlayer getOwner() {
         return owner;
     }
 
-    public void setOwner(Player owner) {
+    public void setOwner(HumanPlayer owner) {
         this.owner = owner;
     }
 

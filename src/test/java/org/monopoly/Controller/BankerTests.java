@@ -94,26 +94,26 @@ public class BankerTests {
     @Test
     public void testPayGoSpace() {
         Banker banker = new Banker();
-        Player player = new Player("Bob", new Token("Thimble", "Thimble.png"));
+        HumanPlayer humanPlayer = new HumanPlayer("Bob", new Token("Thimble", "Thimble.png"));
 
-        assertEquals(1500, player.getBalance());
+        assertEquals(1500, humanPlayer.getBalance());
         assertEquals(Double.POSITIVE_INFINITY, banker.getBalance());
 
-        banker.payGoSpace(player);
-        assertEquals(1700, player.getBalance());
+        banker.payGoSpace(humanPlayer);
+        assertEquals(1700, humanPlayer.getBalance());
         assertEquals(Double.POSITIVE_INFINITY, banker.getBalance());
     }
 
     @Test
     public void testReceiveMoney() {
         Banker banker = new Banker();
-        Player player = new Player("Bob", new Token("Thimble", "Thimble.png"));
+        HumanPlayer humanPlayer = new HumanPlayer("Bob", new Token("Thimble", "Thimble.png"));
 
-        assertEquals(1500, player.getBalance());
+        assertEquals(1500, humanPlayer.getBalance());
         assertEquals(Double.POSITIVE_INFINITY, banker.getBalance());
 
-        banker.receiveMoney(player, 200);
-        assertEquals(1300, player.getBalance());
+        banker.receiveMoney(humanPlayer, 200);
+        assertEquals(1300, humanPlayer.getBalance());
         assertEquals(Double.POSITIVE_INFINITY, banker.getBalance());
     }
 }

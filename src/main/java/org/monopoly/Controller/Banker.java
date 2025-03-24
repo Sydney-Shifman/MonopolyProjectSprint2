@@ -1,6 +1,6 @@
 package org.monopoly.Controller;
 
-import org.monopoly.Model.Player;
+import org.monopoly.Model.HumanPlayer;
 import org.monopoly.Model.TitleDeedDeck;
 import java.util.*;
 
@@ -164,13 +164,13 @@ public class Banker {
         deck.getTitleDeeds().getProperties().get(propertyName).setMortgagedStatus(true);
     }
 
-    public void payGoSpace(Player playerName) {
-        playerName.addToBalance(200);
+    public void payGoSpace(HumanPlayer humanPlayerName) {
+        humanPlayerName.addToBalance(200);
         this.balance -= 200;
     }
 
-    public void receiveMoney(Player playerName, int money) {
-        playerName.subtractFromBalance(money);
+    public void receiveMoney(HumanPlayer humanPlayerName, int money) {
+        humanPlayerName.subtractFromBalance(money);
         this.balance += money;
     }
 

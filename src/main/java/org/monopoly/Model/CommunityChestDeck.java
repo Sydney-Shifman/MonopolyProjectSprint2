@@ -71,44 +71,44 @@ public class CommunityChestDeck extends CardDeck {
 
     /**
      * Executes the strategy for the Community Chest cards
-     * @param player Player
+     * @param humanPlayer Player
      * @param card String
      */
-    public void executeStrategy(Player player, String card) {
+    public void executeStrategy(HumanPlayer humanPlayer, String card) {
         switch (card) {
             case "Advance to Go (Collect $200)":
-                player.setPosition(0);
-                player.addToBalance(200);
+                humanPlayer.setPosition(0);
+                humanPlayer.addToBalance(200);
                 break;
             case "Bank error in your favor. Collect $200":
-                player.addToBalance(200);
+                humanPlayer.addToBalance(200);
                 break;
             case "Doctor’s fee. Pay $50", "Pay school fees of $50":
-                player.subtractFromBalance(50);
+                humanPlayer.subtractFromBalance(50);
                 break;
             case "From sale of stock you get $50":
-                player.addToBalance(50);
+                humanPlayer.addToBalance(50);
                 break;
             case "Get Out of Jail Free":
-                player.releaseFromJail();
+                humanPlayer.releaseFromJail();
                 break;
             case "Go to Jail. Go directly to jail, do not pass Go, do not addToBalance $200":
-                player.goToJail();
+                humanPlayer.goToJail();
                 break;
             case "Holiday fund matures. Receive $100", "You inherit $100", "Life insurance matures. Collect $100":
-                player.addToBalance(100);
+                humanPlayer.addToBalance(100);
                 break;
             case "Income tax refund. Collect $20":
-                player.addToBalance(20);
+                humanPlayer.addToBalance(20);
                 break;
             case "It is your birthday. Collect $10 from every player":
 //                player.addToBalance(0); // todo add logic to collect $10 from every player -> gameState
                 break;
             case "Pay hospital fees of $100":
-                player.subtractFromBalance(100);
+                humanPlayer.subtractFromBalance(100);
                 break;
             case "Receive $25 consultancy fee":
-                player.addToBalance(25);
+                humanPlayer.addToBalance(25);
                 break;
             case "You are assessed for street repair. $40 per house. $115 per hotel":
 
@@ -116,7 +116,7 @@ public class CommunityChestDeck extends CardDeck {
 //                player.subtractFromBalance(totalCharge);
                 break;
             case "You have won second prize in a beauty contest. Collect $10":
-                player.addToBalance(10);
+                humanPlayer.addToBalance(10);
                 break;
             default:
                 break;
@@ -124,6 +124,6 @@ public class CommunityChestDeck extends CardDeck {
     }
 
     @Override
-    public void executeStrategy(Player player) {
+    public void executeStrategy(HumanPlayer humanPlayer) {
     }
 }

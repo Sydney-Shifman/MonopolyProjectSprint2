@@ -1,6 +1,9 @@
 package org.monopoly.View;
 
 import org.monopoly.Model.*;
+import org.monopoly.Model.GameTiles.GameTile;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Token;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package org.monopoly.Controller;
 
-import org.monopoly.Model.HumanPlayer;
+import org.monopoly.Model.Players.HumanPlayer;
 
 /**
  * Strategy interface for implementing different player strategies in the Monopoly game.

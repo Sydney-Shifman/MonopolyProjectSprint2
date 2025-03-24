@@ -1,7 +1,7 @@
 package org.monopoly.Controller;
 
-import org.monopoly.Model.HumanPlayer;
-import org.monopoly.Model.TitleDeedDeck;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Cards.TitleDeedDeck;
 import java.util.*;
 
 public class Banker {

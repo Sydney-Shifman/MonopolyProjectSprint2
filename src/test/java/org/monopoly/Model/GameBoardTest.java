@@ -2,6 +2,8 @@ package org.monopoly.Model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.GameTiles.GameTile;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameBoardTest {

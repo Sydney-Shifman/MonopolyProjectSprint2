@@ -2,7 +2,10 @@ package org.monopoly.Controller;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.monopoly.Model.*;
+
+import org.monopoly.Model.Cards.TitleDeedDeck;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Token;
 
 public class BankerTests {
 

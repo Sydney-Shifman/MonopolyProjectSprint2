@@ -2,6 +2,8 @@ package org.monopoly.Model;
 
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Token;
 
 import static org.junit.jupiter.api.Assertions.*;
 

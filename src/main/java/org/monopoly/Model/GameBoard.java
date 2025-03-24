@@ -1,5 +1,9 @@
 package org.monopoly.Model;
 
+import org.monopoly.Model.Cards.ChanceDeck;
+import org.monopoly.Model.Cards.CommunityChestDeck;
+import org.monopoly.Model.GameTiles.*;
+
 import java.util.*;
 
 

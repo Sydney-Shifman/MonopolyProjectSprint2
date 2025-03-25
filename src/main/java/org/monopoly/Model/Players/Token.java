@@ -1,0 +1,39 @@
+package org.monopoly.Model.Players;
+
+public class Token {
+    private final String name;
+    private final String icon;
+    private HumanPlayer owner;
+
+    /**
+     * Constructor for the Token class.
+     * @param name The name of the token.
+     * @param icon The icon representing the token.
+     */
+    public Token(String name, String icon) {
+        this.name = name;
+        this.icon = icon;
+        this.owner = null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public HumanPlayer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(HumanPlayer owner) {
+        this.owner = owner;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (Owner: " + (owner != null ? getName() : "None") + ")";
+    }
+}

@@ -1,5 +1,9 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Controller.Strategy;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Go Space element on the Game Board's Tiles.
  *
@@ -37,4 +41,10 @@ public class GoSpace extends GameTile {
     private String collectMoney() {
         return "Collect $200";
     }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+        player.addToBalance(200);
+    }
+
 }

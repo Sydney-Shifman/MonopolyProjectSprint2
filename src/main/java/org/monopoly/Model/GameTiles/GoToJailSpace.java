@@ -1,5 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Go-To Jail Space element on the Game Board's Tiles.
  *
@@ -36,5 +39,10 @@ public class GoToJailSpace extends GameTile {
      */
     private String goToJail() {
         return "Go directly to Jail";
+    }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+        player.goToJail();
     }
 }

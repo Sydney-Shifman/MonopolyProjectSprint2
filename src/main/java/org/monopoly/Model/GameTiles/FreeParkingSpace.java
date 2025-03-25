@@ -1,5 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Free Parking Space element on the Game Board's Tiles.
  *
@@ -36,5 +39,10 @@ public class FreeParkingSpace extends GameTile {
      */
     private String doNothing() {
         return "Take a rest, you don't have to do anything";
+    }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+        doNothing();
     }
 }

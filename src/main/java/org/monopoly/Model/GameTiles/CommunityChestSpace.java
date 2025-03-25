@@ -1,19 +1,24 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Cards.CommunityChestDeck;
+import org.monopoly.Model.Players.HumanPlayer;
+
 /**
  * Represents the Community Chest Space element on the Game Board's Tiles.
  *
  * @author shifmans
  */
 public class CommunityChestSpace extends GameTile {
+    private CommunityChestDeck deck;
 
     /**
      * Constructor to initialize a CommunityChestSpace.
      *
      * Developed by: shifmans
      */
-    public CommunityChestSpace() {
+    public CommunityChestSpace(CommunityChestDeck deck) {
         super("Community Chest Space", "");
+        this.deck = deck;
     }
 
     /**
@@ -36,5 +41,11 @@ public class CommunityChestSpace extends GameTile {
      */
     private String drawCard() {
         return "Draw a card from the deck";
+    }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+        String card = deck.drawCard();
+        deck.executeStrategy(player, card);
     }
 }

@@ -26,6 +26,7 @@ public class HumanPlayer extends Player {
     private ArrayList<String> propertiesMortgaged;
     private HashMap<String, Integer> monopolies;
     private ArrayList<String> cards;
+    private int jailTurns;
 // todo add functionality for the player to add a house or hotel to a property. must have a monopoly on the property to do so
 
     public HumanPlayer(String name, Token token) {
@@ -33,6 +34,7 @@ public class HumanPlayer extends Player {
         this.token = token;
         this.balance = 1500; // Starting balance
         this.inJail = false;
+        this.jailTurns = 0;
         token.setOwner(this);
         this.position = 0;
         this.numHouses = 0;
@@ -119,34 +121,19 @@ public class HumanPlayer extends Player {
      * @param dice Dice object
      */
     public void takeTurn (Dice dice) {
-        // todo implement player turn
+        if (inJail) {
+            System.out.println(name + " is in jail and cannot roll.");
+//            return;
+        }
 
-//        if (inJail) {
-//            System.out.println(name + " is in jail and cannot roll.");
-//        }
-//
-//        int[] rollResult = dice.roll();
-//        int die1 = rollResult[0];
-//        int die2 = rollResult[1];
-//        int total = die1 + die2;
-//
-//        System.out.println(name + " rolled a " + die1 + " and a " + die2 + " (Total: " + total + ")");
-//
-//        move(total);
-//
-//        if (dice.isDouble()) {
-//            Dice.incrementNumDoubles();
-//            System.out.println(name + " rolled doubles!");
-//            if (Dice.getNumDoubles() == 3) {
-//                goToJail();
-//                System.out.println(name + " has been sent to jail for 3 consecutive doubles.");
-//            } else {
-//                System.out.println(name + " gets to roll again!");
-//                takeTurn(dice);
-//            }
-//        } else {
-//            Dice.resetNumDoubles();
-//        }
+        int[] rollResult = dice.roll();
+        int die1 = rollResult[0];
+        int die2 = rollResult[1];
+        int total = die1 + die2;
+
+        System.out.println(name + " rolled a " + die1 + " and a " + die2 + " (Total: " + total + ")");
+
+        move(total);
     }
 
     /**
@@ -315,6 +302,21 @@ public class HumanPlayer extends Player {
             currMonopolies.add("darkBlue");
         }
         updateMonopolies(currMonopolies);
+    }
+
+    @Override
+    public int getJailTurns() {
+        return jailTurns;
+    }
+
+    @Override
+    public void resetJailTurns(){
+        this.jailTurns = 0;
+    }
+
+    @Override
+    public void incrementJailTurns(){
+        this.jailTurns++;
     }
 
     private void updateMonopolies(ArrayList<String> monopolies) {

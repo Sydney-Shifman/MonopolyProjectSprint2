@@ -57,4 +57,8 @@ public abstract class Player {
     public abstract boolean hasCard(String card);
 
     public abstract boolean isBankrupt();
+
+    public abstract void resetJailTurns();
+    public abstract void incrementJailTurns();
+    public abstract int getJailTurns();
 }

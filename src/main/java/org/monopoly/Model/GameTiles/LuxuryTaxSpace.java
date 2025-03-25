@@ -1,5 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Luxury Tax Space element on the Game Board's Tiles.
  *
@@ -36,5 +39,10 @@ public class LuxuryTaxSpace extends GameTile {
      */
     private String payTax() {
         return "Pay $100";
+    }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+        player.subtractFromBalance(100);
     }
 }

@@ -1,5 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Income Tax Space element on the Game Board's Tiles.
  *
@@ -36,5 +39,10 @@ public class IncomeTaxSpace extends GameTile {
      */
     private String payTax() {
         return "Pay $200";
+    }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+        player.subtractFromBalance(200);
     }
 }

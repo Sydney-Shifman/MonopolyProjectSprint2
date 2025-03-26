@@ -27,7 +27,7 @@ public class ChanceDeck extends CardDeck {
         chanceCards.add("Advance to Go (Collect $200).");
         chanceCards.add("Advance to Illinois Avenue. If you pass Go, collect $200.");
         chanceCards.add("Advance to St. Charles Place. If you pass Go, collect $200.");
-        chanceCards.add("Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay wonder twice the rental to which they are otherwise entitled.");
+        chanceCards.add("Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled.");
         chanceCards.add("Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times amount thrown.");
         chanceCards.add("Bank pays you dividend of $50.");
         chanceCards.add("Get Out of Jail Free.");
@@ -73,7 +73,88 @@ public class ChanceDeck extends CardDeck {
 
     // todo add a method for the player to use a chance card
     public void executeStrategy(Player player, String card) {
-        // add switch statement
+        switch (card) {
+            case "Advance to Boardwalk.":
+                player.setPosition(39);
+                break;
+            case "Advance to Go (Collect $200).":
+                player.setPosition(0);
+                player.addToBalance(200);
+                break;
+            case "Advance to Illinois Avenue. If you pass Go, collect $200.":
+                if (player.getPosition() > 24) {
+                    player.addToBalance(200);
+                }
+                player.setPosition(24);
+                break;
+            case "Advance to St. Charles Place. If you pass Go, collect $200.":
+                if (player.getPosition() > 11) {
+                    player.addToBalance(200);
+                }
+                player.setPosition(11);
+                break;
+            case "Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled.":
+                int position = player.getPosition();
+                if (position == 7) {
+                    player.setPosition(15);
+                } else if (position == 22) {
+                    player.setPosition(25);
+                } else if (position == 36) {
+                    player.setPosition(5);
+                }
+                break;
+            case "Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times amount thrown.":
+                int pos = player.getPosition();
+                if (pos == 7 || pos == 36) {
+                    player.setPosition(12);
+                } else if (pos == 22) {
+                    player.setPosition(28);
+                }
+                break;
+            case "Bank pays you dividend of $50.":
+                player.addToBalance(50);
+                break;
+            case "Get Out of Jail Free.":
+                if (!player.isInJail()) {
+                    player.addCard("chance:" + card);
+                    return;
+                } else {
+                    returnCardToDeck(card);
+                    player.releaseFromJail();
+                }
+                break;
+            case "Go Back 3 Spaces.":
+                if (player.getPosition() < 3) {
+                    player.setPosition(40 - (3 - player.getPosition()));
+                } else {
+                    player.setPosition(player.getPosition() - 3);
+                }
+                break;
+            case "Go to Jail. Go directly to Jail, do not pass Go, do not collect $200.":
+                player.setPosition(10);
+                player.goToJail();
+                break;
+            case "Make general repairs on all your property. For each house pay $25. For each hotel pay $100.":
+                int total = (player.getNumHotels() * 100) + (player.getNumHouses() * 25);
+                player.subtractFromBalance(total);
+                break;
+            case "Speeding fine $15.":
+                player.subtractFromBalance(15);
+                break;
+            case "Take a trip to Reading Railroad. If you pass Go, collect $200.":
+                if (player.getPosition() > 5) {
+                    player.addToBalance(200);
+                }
+                player.setPosition(5);
+                break;
+            case "You have been elected Chairman of the Board. Pay each player $50.":
+                // todo find way to pay all
+                break;
+            case "Your building loan matures. Collect $150":
+                player.addToBalance(150);
+            default:
+                break;
+        }
         returnCardToDeck(card);
     }
 }

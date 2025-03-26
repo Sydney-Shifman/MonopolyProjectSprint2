@@ -74,6 +74,13 @@ public class ChanceDeck extends CardDeck {
     // todo add a method for the player to use a chance card
     public void executeStrategy(Player player, String card) {
         // add switch statement
-        returnCardToDeck(card);
+        // if "get out of jail", if player not in jail -> add to player inventory -> return;, else release from jail
+        // Like this:
+//        if (!player.isInJail()) {
+//            player.addCard("chance:" + card);
+//        } else {
+//            returnCardToDeck(card);
+//            player.releaseFromJail();
+//        }
     }
 }

@@ -51,14 +51,19 @@ public class Game {
         // Player takes standard turn
         while (Dice.getNumDoubles() == doublesNeeded && Dice.getNumDoubles() < 3) {
             currentPlayer.takeTurn(dice);
-            int pos = currentPlayer.getPosition();
-//            gameBoard.getTile(pos).executeStrategy(currentPlayer)
+            gameBoard.executeStrategyType(currentPlayer, "tile");
             if (dice.isDouble()) {
                 Dice.incrementNumDoubles();
             }
             doublesNeeded++;
         }
         Dice.resetNumDoubles();
+    }
+
+    /**
+     * Continues to the next players turn (ends the current players turn)
+     */
+    public void nextPlayersTurn(){
         turnManager.nextPlayer();
     }
 

@@ -143,11 +143,17 @@ public class GameBoard {
     public void executeStrategyType(Player player, String type) {
         if (Objects.equals(type, "tile")) {
             GameTile currTile = tiles.get(player.getPosition());
+            if (currTile instanceof ChanceSpace) {
+                chanceDeck.executeStrategy(player, drawChanceCard());
+            } else if (currTile instanceof CommunityChestSpace) {
+                communityChestDeck.executeStrategy(player, drawCommunityChestCard());
+            } else {
 //            currTile.executeStrategy(player);
-        } else if (type.contains("community:")){
+            }
+        } else if (type.contains("community:")){ // player uses get out of jail card
             String card = type.split(":")[1];
             communityChestDeck.executeStrategy(player, card);
-        } else if (type.contains("chance:")) {
+        } else if (type.contains("chance:")) { // player uses get out of jail card
             String card = type.split(":")[1];
             chanceDeck.executeStrategy(player, card);
         }

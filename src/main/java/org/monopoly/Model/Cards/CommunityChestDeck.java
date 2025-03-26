@@ -92,7 +92,13 @@ public class CommunityChestDeck extends CardDeck {
                 player.addToBalance(50);
                 break;
             case "Get Out of Jail Free":
-                player.releaseFromJail();
+                if (!player.isInJail()) {
+                    player.addCard("community:" + card);
+                    return;
+                } else {
+                    player.releaseFromJail();
+                    returnCardToDeck(card);
+                }
                 break;
             case "Go to Jail. Go directly to jail, do not pass Go, do not addToBalance $200":
                 player.goToJail();

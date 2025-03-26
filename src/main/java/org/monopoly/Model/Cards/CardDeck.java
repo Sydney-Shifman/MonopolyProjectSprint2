@@ -1,6 +1,6 @@
 package org.monopoly.Model.Cards;
 
-import org.monopoly.Controller.Strategy;
+import org.monopoly.Model.Strategy;
 
 import java.util.ArrayList;
 import java.util.Collections;

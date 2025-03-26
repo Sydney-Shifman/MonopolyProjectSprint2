@@ -39,26 +39,25 @@ class ChanceDeckTest {
     }
 
     @Test
-    void testDrawCardReshuffleResetsDeckSizeToSixteen() {
+    void testDrawDoesNotReturnCardWhenEmpty(){
         ChanceDeck chanceDeck = new ChanceDeck();
         for (int i = 0; i < 15; i++) {
             chanceDeck.drawCard();
         }
-        assertEquals(0, chanceDeck.drawPile.size(), "Deck size should be reset to 15 after reshuffling");
         String card = chanceDeck.drawCard();
-        assertEquals(14, chanceDeck.drawPile.size(), "Deck size should be 14 after drawing a card");
-        assertNotNull(card, "Card should be drawn after reshuffling");
+        assertEquals("No cards left in deck",card, "Card should not be drawn when deck is empty");
     }
 
     @Test
-    void testDrawCardReshuffleResetsDiscardPile() {
+    void testDrawCardReshuffleResetsUnavailablePile() {
         ChanceDeck chanceDeck = new ChanceDeck();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 14; i++) {
             chanceDeck.drawCard();
         }
-        assertEquals(15, chanceDeck.discardPile.size(), "Discard pile should contain 15 cards after reshuffling");
         String card = chanceDeck.drawCard();
-        assertEquals(1, chanceDeck.discardPile.size(), "Discard pile should contain 1 card after drawing a card");
+        assertEquals(15, chanceDeck.unavailableCards.size(), "Unavailable pile should be 15 after all cards are drawn");
+        chanceDeck.returnCardToDeck(card);
+        assertEquals(1, chanceDeck.discardPile.size(), "Discard pile should contain 1 card after returning a card");
         assertNotNull(card, "Card should be drawn after reshuffling");
     }
 
@@ -66,11 +65,13 @@ class ChanceDeckTest {
     void testDrawCardReshuffleResetsDiscardPileToDrawPile() {
         ChanceDeck chanceDeck = new ChanceDeck();
         for (int i = 0; i < 15; i++) {
-            chanceDeck.drawCard();
+            String card = chanceDeck.drawCard();
+            chanceDeck.returnCardToDeck(card);
         }
         String card = chanceDeck.drawCard();
         assertEquals(14, chanceDeck.drawPile.size(), "Draw pile should contain 15 cards after drawing a card");
-        assertEquals(1, chanceDeck.discardPile.size(), "Discard pile should contain 1 card after drawing a card");
+        assertEquals(0, chanceDeck.discardPile.size(), "Discard pile should contain 0 cards after drawing a card");
+        assertEquals(1, chanceDeck.unavailableCards.size(), "Discard pile should contain 1 card after drawing a card");
         assertNotNull(card, "Card should be drawn after reshuffling");
     }
 

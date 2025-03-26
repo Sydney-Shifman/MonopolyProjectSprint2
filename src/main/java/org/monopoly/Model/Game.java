@@ -1,6 +1,5 @@
 package org.monopoly.Model;
 
-import org.monopoly.Controller.Banker;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 import org.monopoly.Model.Players.Token;

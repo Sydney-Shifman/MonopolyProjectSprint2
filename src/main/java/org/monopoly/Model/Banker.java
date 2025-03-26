@@ -1,4 +1,4 @@
-package org.monopoly.Controller;
+package org.monopoly.Model;
 
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Cards.TitleDeedDeck;

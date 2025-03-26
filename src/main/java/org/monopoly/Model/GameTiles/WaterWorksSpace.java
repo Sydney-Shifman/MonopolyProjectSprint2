@@ -30,6 +30,7 @@ public class WaterWorksSpace extends GameTile {
 
     /**
      * Constructor to initialize a WaterWorksSpace with all information.
+     * @param actions Actions for a WaterWorksSpace.
      * @param price Price for a WaterWorksSpace.
      * @param rentPriceMultiplier Rent Price Multiplier for a WaterWorksSpace.
      * @param colorGroup Color Group for a WaterWorksSpace.
@@ -37,8 +38,8 @@ public class WaterWorksSpace extends GameTile {
      *
      * Developed by: shifmans
      */
-    public WaterWorksSpace(int price, ArrayList<Integer> rentPriceMultiplier, ColorGroup colorGroup, int mortgageValue) {
-        super("Water Works", "Buy Property, Pay Rent, Mortgage");
+    public WaterWorksSpace(String actions, int price, ArrayList<Integer> rentPriceMultiplier, ColorGroup colorGroup, int mortgageValue) {
+        super("Water Works", actions);
         this.price = price;
         this.rentPriceMultiplier = rentPriceMultiplier;
         this.colorGroup = colorGroup;

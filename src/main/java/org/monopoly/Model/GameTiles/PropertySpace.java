@@ -46,6 +46,7 @@ public class PropertySpace extends GameTile {
      * @param name Name of a PropertySpace.
      * @param actions Actions for a PropertySpace.
      * @param price Price for a PropertySpace.
+     * @param rentPrices Rent Prices for a PropertySpace.
      * @param colorGroup Color Group for a PropertySpace.
      * @param housePrice House Price for a PropertySpace.
      * @param hotelPrice Hotel Price for a PropertySpace.

@@ -31,6 +31,7 @@ public class ElectricCompanySpace extends GameTile {
 
     /**
      * Constructor to initialize a ElectricCompanySpace with all information.
+     * @param actions Actions for a ElectricCompanySpace.
      * @param price Price for a ElectricCompanySpace.
      * @param rentPriceMultiplier Rent Price Multiplier for a ElectricCompanySpace.
      * @param colorGroup Color Group for a ElectricCompanySpace.
@@ -38,8 +39,8 @@ public class ElectricCompanySpace extends GameTile {
      *
      * Developed by: shifmans
      */
-    public ElectricCompanySpace(int price, ArrayList<Integer> rentPriceMultiplier, ColorGroup colorGroup, int mortgageValue) {
-        super("Electric Company", "Buy Property, Pay Rent, Mortgage");
+    public ElectricCompanySpace(String actions, int price, ArrayList<Integer> rentPriceMultiplier, ColorGroup colorGroup, int mortgageValue) {
+        super("Electric Company", actions);
         this.price = price;
         this.rentPriceMultiplier = rentPriceMultiplier;
         this.colorGroup = colorGroup;

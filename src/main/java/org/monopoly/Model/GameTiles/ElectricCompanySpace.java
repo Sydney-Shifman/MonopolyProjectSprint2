@@ -99,7 +99,7 @@ public class ElectricCompanySpace extends GameTile {
         int[] diceRoll = dice.roll();
 
 
-        if (numUtilitiesOwned == 1) { // If the player owns 1 Electric Company
+        if (numUtilitiesOwned == 1) { // If the player owns 1 utility
             return (diceRoll[0] + diceRoll[1]) * getRentPriceMultiplier().get(0);
         }
 

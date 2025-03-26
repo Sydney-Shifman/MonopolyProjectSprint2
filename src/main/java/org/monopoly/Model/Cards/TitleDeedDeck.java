@@ -1,11 +1,10 @@
 package org.monopoly.Model.Cards;
 
-import org.monopoly.Model.GameTiles.PropertySpace;
-
+import org.monopoly.Model.GameTiles.GameTile;
 import java.util.*;
 
 public class TitleDeedDeck {
-    private ArrayList<PropertySpace> drawPile;
+    private ArrayList<GameTile> drawPile;
     private TitleDeedCards properties;
 
     public TitleDeedDeck() {
@@ -20,8 +19,8 @@ public class TitleDeedDeck {
         }
     }
 
-    public PropertySpace drawCard(String currentProperty) {
-        PropertySpace property = properties.getProperty(currentProperty);
+    public GameTile drawCard(String currentProperty) {
+        GameTile property = properties.getProperty(currentProperty);
 
         if (!drawPile.contains(property)) {
             throw new NoSuchElementException("Property has already been purchased.");
@@ -33,7 +32,7 @@ public class TitleDeedDeck {
     }
 
     public void returnCard(String currentProperty) {
-        PropertySpace property = properties.getProperty(currentProperty);
+        GameTile property = properties.getProperty(currentProperty);
 
         if (drawPile.contains(property)) {
             throw new IllegalArgumentException("Property is already in deck.");
@@ -45,26 +44,6 @@ public class TitleDeedDeck {
     public TitleDeedCards getTitleDeeds() {
         return this.properties;
     }
-
-    //Need to add all methods and attributes to propertySpace.
-    /**
-    public String displayCardInfo(String currentProperty) {
-        PropertySpace property = properties.getProperty(currentProperty);
-
-        return "\nProperty Name: " + property.getName() +
-                "\nColor Group: " + property.getColorGroup() +
-                "\nPurchase Price: $" + property.getPrice() +
-                "\nRent (without houses/hotels): $" + property.getRent() +
-                "\nRent with 1 House: $" + property.getRent() + //Create Array for Rent
-                "\nRent with 2 Houses: $" + property.getRent() +
-                "\nRent with 3 Houses: $" + property.getRent() +
-                "\nRent with 4 Houses: $" + property.getRent() +
-                "\nRent with Hotel: $" + property.getRent() +
-                "\nMortgage Value: $" +
-                "\nHouses: " +
-                "\nHotel: ";
-    }
-    */
 
     public int getSize() {
         return this.drawPile.size();

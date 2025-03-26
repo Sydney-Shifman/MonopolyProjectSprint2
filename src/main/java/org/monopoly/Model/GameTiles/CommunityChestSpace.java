@@ -45,7 +45,5 @@ public class CommunityChestSpace extends GameTile {
 
     @Override
     public void executeStrategy(HumanPlayer player) {
-        String card = deck.drawCard();
-        deck.executeStrategy(player, card);
     }
 }

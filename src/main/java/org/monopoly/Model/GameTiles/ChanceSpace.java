@@ -45,11 +45,5 @@ public class ChanceSpace extends GameTile {
 
     @Override
     public void executeStrategy(HumanPlayer player) {
-        String card = deck.drawCard();
-        if (card.equals("Get Out of Jail Free.")) {
-            player.addCard(card);
-        } else {
-            deck.executeStrategy(player, card);
-        }
     }
 }

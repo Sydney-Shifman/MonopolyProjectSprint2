@@ -1,6 +1,9 @@
 package org.monopoly.Model.GameTiles;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Cards.ColorGroup;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,14 +30,14 @@ public class ElementSpacesNameTests {
 
     @Test
     public void testPropertySpaceNameCorrectLabel() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
 
         assertEquals("Property Space", space.getName());
     }
 
     @Test
     public void testPropertySpaceNameIncorrectLabel() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
 
         assertNotEquals("Community Chest Space", space.getName());
     }
@@ -83,14 +86,15 @@ public class ElementSpacesNameTests {
 
     @Test
     public void testRailroadSpaceNameCorrectLabel() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Railroad Space", "", 0, new ArrayList<>(), ColorGroup.RAILROAD, 0);
 
-        assertEquals("Railroad Space", space.getName());
+
+            assertEquals("Railroad Space", space.getName());
     }
 
     @Test
     public void testRailroadSpaceNameIncorrectLabel() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Railroad Space", "", 0, new ArrayList<>(), ColorGroup.RAILROAD, 0);
 
         assertNotEquals("Go To Jail Space", space.getName());
     }
@@ -106,33 +110,33 @@ public class ElementSpacesNameTests {
     public void testFreeParkingSpaceNameIncorrectLabel() {
         FreeParkingSpace space = new FreeParkingSpace();
 
-        assertNotEquals("Electric Company Space", space.getName());
+        assertNotEquals("Electric Company", space.getName());
     }
 
     @Test
     public void testElectricCompanySpaceNameCorrectLabel() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
 
-        assertEquals("Electric Company Space", space.getName());
+        assertEquals("Electric Company", space.getName());
     }
 
     @Test
     public void testElectricCompanySpaceNameIncorrectLabel() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
 
         assertNotEquals("Water Works Space", space.getName());
     }
 
     @Test
     public void testWaterWorksSpaceNameCorrectLabel() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
 
-        assertEquals("Water Works Space", space.getName());
+            assertEquals("Water Works", space.getName());
     }
 
     @Test
     public void testWaterWorksSpaceNameIncorrectLabel() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
 
         assertNotEquals("Luxury Tax Space", space.getName());
     }

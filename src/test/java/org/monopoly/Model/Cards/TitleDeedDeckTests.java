@@ -62,7 +62,7 @@ public class TitleDeedDeckTests {
         deck.drawCard("Reading Railroad");
         deck.drawCard("Pennsylvania Railroad");
         deck.drawCard("B&O Railroad");
-        deck.drawCard("Short Line");
+        deck.drawCard("Short Line Railroad");
         deck.drawCard("Electric Company");
         deck.drawCard("Water Works");
 

@@ -1,5 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Strategy;
+
 import java.util.ArrayList;
 
 /**
@@ -7,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author shifmans
  */
-public abstract class GameTile {
+public abstract class GameTile implements Strategy {
     protected String name;
     protected String actions;
     protected ArrayList<String> tokens;
@@ -87,4 +90,6 @@ public abstract class GameTile {
     public void removeToken(String token) {
         tokens.remove(token);
     }
+
+    public void executeStrategy(HumanPlayer player) {}
 }

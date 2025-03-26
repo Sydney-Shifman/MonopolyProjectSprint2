@@ -53,49 +53,49 @@ public class Banker {
     }
 
     public void auctionProperty(String propertyName, ArrayList<String> players) {
-        int currentBidAmount = deck.getTitleDeeds().getProperty(propertyName).getPrice();
-        HashMap<String, Integer> currentBidding = new HashMap<>();
-        String currentHighestBidder;
-        int numRounds = 1;
-
-        while (true) {
-            if (numRounds == 1) {
-                System.out.println("Starting Bid for " + propertyName + " starting at $" + currentBidAmount);
-            }
-            else {
-                System.out.println("Round " + numRounds + ", the bid now starts at $" + currentBidAmount);
-            }
-
-            ArrayList<String> bidders = getCurrentBidders(players);
-            ArrayList<Integer> bidAmounts = getBidAmount(currentBidAmount, bidders);
-
-            /*
-            if ((numRounds == 1) && (bidders.isEmpty())) {
-                //Return property to pile and get rid of ownership
-            }
-             */
-
-            if (bidders.size() <= 1) {
-                endAuction(propertyName, bidders, bidAmounts);
-                break;
-            }
-
-            System.out.println(bidders);
-            System.out.println(bidAmounts);
-
-            for (int i = 0; i < bidders.size(); i++) {
-                currentBidding.put(bidders.get(i), bidAmounts.get(i));
-            }
-            System.out.println(currentBidding);
-
-            currentHighestBidder = getHighestBidder(currentBidding);
-            System.out.println(currentHighestBidder);
-
-            currentBidAmount = currentBidding.get(currentHighestBidder);
-            System.out.println(currentBidAmount);
-
-            numRounds++;
-        }
+//        int currentBidAmount = deck.getTitleDeeds().getProperty(propertyName).getPrice();
+//        HashMap<String, Integer> currentBidding = new HashMap<>();
+//        String currentHighestBidder;
+//        int numRounds = 1;
+//
+//        while (true) {
+//            if (numRounds == 1) {
+//                System.out.println("Starting Bid for " + propertyName + " starting at $" + currentBidAmount);
+//            }
+//            else {
+//                System.out.println("Round " + numRounds + ", the bid now starts at $" + currentBidAmount);
+//            }
+//
+//            ArrayList<String> bidders = getCurrentBidders(players);
+//            ArrayList<Integer> bidAmounts = getBidAmount(currentBidAmount, bidders);
+//
+//            /*
+//            if ((numRounds == 1) && (bidders.isEmpty())) {
+//                //Return property to pile and get rid of ownership
+//            }
+//             */
+//
+//            if (bidders.size() <= 1) {
+//                endAuction(propertyName, bidders, bidAmounts);
+//                break;
+//            }
+//
+//            System.out.println(bidders);
+//            System.out.println(bidAmounts);
+//
+//            for (int i = 0; i < bidders.size(); i++) {
+//                currentBidding.put(bidders.get(i), bidAmounts.get(i));
+//            }
+//            System.out.println(currentBidding);
+//
+//            currentHighestBidder = getHighestBidder(currentBidding);
+//            System.out.println(currentHighestBidder);
+//
+//            currentBidAmount = currentBidding.get(currentHighestBidder);
+//            System.out.println(currentBidAmount);
+//
+//            numRounds++;
+//        }
     }
 
     private void endAuction(String propertyName, ArrayList<String> bidders, ArrayList<Integer> bidAmounts) {
@@ -161,7 +161,7 @@ public class Banker {
     }
 
     public void mortgageProperty(String propertyName) {
-        deck.getTitleDeeds().getProperties().get(propertyName).setMortgagedStatus(true);
+//        deck.getTitleDeeds().getProperties().get(propertyName).setMortgagedStatus(true);
     }
 
     public void payGoSpace(HumanPlayer humanPlayerName) {

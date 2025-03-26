@@ -1,6 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Cards.ChanceDeck;
+import org.monopoly.Model.Cards.CommunityChestDeck;
 
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -255,14 +257,14 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensNoTokens() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         ArrayList<String> tokens = new ArrayList<>();
         assertEquals(tokens, space.getTokens());
     }
 
     @Test
     public void testCommunityChestSpaceTokensAddOneToken() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -272,7 +274,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensAddTwoToken() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -284,7 +286,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensAddOneTokenUnderCapacity() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -300,7 +302,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensAddTokenToCapacity() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -317,7 +319,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensAddOneTokenOverCapacity() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -335,7 +337,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensAddOneRemoveOneToken() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -349,7 +351,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensAddTwoRemoveOneToken() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -365,7 +367,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testCommunityChestSpaceTokensNoTokensRemoveOneToken() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.removeToken("Dog");
@@ -375,14 +377,14 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensNoTokens() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         ArrayList<String> tokens = new ArrayList<>();
         assertEquals(tokens, space.getTokens());
     }
 
     @Test
     public void testChanceSpaceTokensAddOneToken() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -392,7 +394,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensAddTwoToken() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -404,7 +406,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensAddOneTokenUnderCapacity() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -420,7 +422,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensAddTokenToCapacity() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -437,7 +439,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensAddOneTokenOverCapacity() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -455,7 +457,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensAddOneRemoveOneToken() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -469,7 +471,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensAddTwoRemoveOneToken() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -485,7 +487,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testChanceSpaceTokensNoTokensRemoveOneToken() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
         ArrayList<String> tokens = new ArrayList<>();
 
         space.removeToken("Dog");

@@ -1,6 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Cards.ChanceDeck;
+import org.monopoly.Model.Cards.CommunityChestDeck;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,28 +43,28 @@ public class ElementSpacesNameTests {
 
     @Test
     public void testCommunityChestSpaceNameCorrectLabel() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
 
         assertEquals("Community Chest Space", space.getName());
     }
 
     @Test
     public void testCommunityChestSpaceNameIncorrectLabel() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
 
         assertNotEquals("Chance Space", space.getName());
     }
 
     @Test
     public void testChanceSpaceNameCorrectLabel() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
 
         assertEquals("Chance Space", space.getName());
     }
 
     @Test
     public void testChanceSpaceNameIncorrectLabel() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
 
         assertNotEquals("Jail Space", space.getName());
     }

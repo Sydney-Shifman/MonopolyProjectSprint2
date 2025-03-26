@@ -1,5 +1,7 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Electric Company Space element on the Game Board's Tiles.
  *
@@ -44,5 +46,10 @@ public class ElectricCompanySpace extends GameTile {
                 "Mortgage Value: $75\n" +
                 "Houses: Cannot build houses or hotels\n" +
                 "Hotel: Cannot build hotels";
+    }
+
+    @Override
+    public void executeStrategy(Player player) {
+
     }
 }

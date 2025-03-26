@@ -1,6 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Model.Cards.ColorGroup;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,10 @@ public class PropertySpace extends GameTile {
     private int housePrice;
     private int hotelPrice;
     private int mortgageValue;
+    private int unmortgageValue;
     private boolean isMortgaged;
+    private int numHouses;
+    private int numHotels;
     private String owner;
 
     /**
@@ -43,6 +48,7 @@ public class PropertySpace extends GameTile {
      * @param name Name of a PropertySpace.
      * @param actions Actions for a PropertySpace.
      * @param price Price for a PropertySpace.
+     * @param rentPrices Rent Prices for a PropertySpace.
      * @param colorGroup Color Group for a PropertySpace.
      * @param housePrice House Price for a PropertySpace.
      * @param hotelPrice Hotel Price for a PropertySpace.
@@ -58,7 +64,10 @@ public class PropertySpace extends GameTile {
         this.housePrice = housePrice;
         this.hotelPrice = hotelPrice;
         this.mortgageValue = mortgageValue;
+        this.unmortgageValue = mortgageValue + (int) (mortgageValue * 0.1); //Mortgage value plus 10% interest
         this.isMortgaged = false;
+        this.numHouses = 0;
+        this.numHotels = 0;
         this.owner = "";
     }
 
@@ -81,18 +90,18 @@ public class PropertySpace extends GameTile {
      * Developed by: shifmans
      */
     private String displayPropertyInfo() {
-        return "Property Name: Boardwalk\n" +
-                "Color Set: Dark Blue\n" +
-                "Purchase Price: $400\n" +
-                "Rent (without houses/hotels): $50\n" +
-                "Rent with 1 House: $200\n" +
-                "Rent with 2 Houses: $600\n" +
-                "Rent with 3 Houses: $1,400\n" +
-                "Rent with 4 Houses: $1,800\n" +
-                "Rent with Hotel: $2,000\n" +
-                "Mortgage Value: $200\n" +
-                "Houses: Can build 4 houses\n" +
-                "Hotel: Can build 1 hotel";
+        return "Property Name: " + getName() + "\n" +
+                "Color Set: " + getColorGroup() + "\n" +
+                "Purchase Price: " + getPrice() + "\n" +
+                "Rent (without houses/hotels): " + getRentPrices().get(0) + "\n" +
+                "Rent with 1 House: " + getRentPrices().get(1) + "\n" +
+                "Rent with 2 Houses: " + getRentPrices().get(2) + "\n" +
+                "Rent with 3 Houses: " + getRentPrices().get(3) + "\n" +
+                "Rent with 4 Houses: " + getRentPrices().get(4) + "\n" +
+                "Rent with Hotel: " + getRentPrices().get(5) + "\n" +
+                "Mortgage Value: " + getMortgageValue() + "\n" +
+                "House Price: " + getHousePrice() + "\n" +
+                "Hotel Price: " + getHotelPrice();
     }
 
     /**
@@ -156,6 +165,14 @@ public class PropertySpace extends GameTile {
     }
 
     /**
+     * Gets the unmortgage value of a PropertySpace.
+     * @return The unmortgage value of a PropertySpace.
+     */
+    public int getUnmortgageValue() {
+        return unmortgageValue;
+    }
+
+    /**
      * Gets the mortgaged status of a PropertySpace.
      * @return The mortgaged status of a PropertySpace.
      *
@@ -176,6 +193,46 @@ public class PropertySpace extends GameTile {
     }
 
     /**
+     * Gets the number of houses on a PropertySpace.
+     * @return The number of houses on a PropertySpace.
+     *
+     * Developed by: shifmans
+     */
+    public int getNumHouses() {
+        return numHouses;
+    }
+
+    /**
+     * Sets the number of houses on a PropertySpace.
+     * @param numHouses The number of houses on a PropertySpace.
+     *
+     * Developed by: shifmans
+     */
+    public void setNumHouses(int numHouses) {
+        this.numHouses = numHouses;
+    }
+
+    /**
+     * Gets the number of hotels on a PropertySpace.
+     * @return The number of hotels on a PropertySpace.
+     *
+     * Developed by: shifmans
+     */
+    public int getNumHotels() {
+        return numHotels;
+    }
+
+    /**
+     * Sets the number of hotels on a PropertySpace.
+     * @param numHotels The number of hotels on a PropertySpace.
+     *
+     * Developed by: shifmans
+     */
+    public void setNumHotels(int numHotels) {
+        this.numHotels = numHotels;
+    }
+
+    /**
      * Gets the owner of a PropertySpace.
      * @return The owner of a PropertySpace.
      *
@@ -193,5 +250,11 @@ public class PropertySpace extends GameTile {
      */
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+
+    @Override
+    public void executeStrategy(Player player) {
+
     }
 }

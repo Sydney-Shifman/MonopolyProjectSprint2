@@ -62,7 +62,7 @@ public class CommunityChestDeck extends CardDeck {
     }
 
     /**
-     * Returns the discard pile to the discard pile
+     * Returns the card to the discard pile
      */
     public void returnCardToDeck(String card) {
         if (unavailableCards.contains(card)) {
@@ -122,6 +122,7 @@ public class CommunityChestDeck extends CardDeck {
             default:
                 break;
         }
+        returnCardToDeck(card);
     }
 
     @Override

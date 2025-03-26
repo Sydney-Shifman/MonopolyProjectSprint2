@@ -47,14 +47,25 @@ public class ChanceDeck extends CardDeck {
      */
     @Override
     public String drawCard() {
-        if (this.drawPile.isEmpty()){
-            this.reshuffleDrawPile();
+        if (drawPile.isEmpty() && discardPile.isEmpty()) {
+            return "No cards left in deck";
+        } else if (drawPile.isEmpty()) {
+            reshuffleDrawPile();
         }
-        String card = this.drawPile.removeLast();
-        this.discardPile.add(card);
+        String card = drawPile.removeLast();
+        unavailableCards.add(card);
         return card;
     }
 
+    /**
+     * Returns the card to the discard pile
+     */
+    public void returnCardToDeck(String card) {
+        if (unavailableCards.contains(card)) {
+            unavailableCards.remove(card);
+            discardPile.add(card);
+        }
+    }
 
     @Override
     public void executeStrategy(Player player) {
@@ -62,5 +73,7 @@ public class ChanceDeck extends CardDeck {
 
     // todo add a method for the player to use a chance card
     public void executeStrategy(Player player, String card) {
+        // add switch statement
+        returnCardToDeck(card);
     }
 }

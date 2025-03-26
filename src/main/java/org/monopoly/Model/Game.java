@@ -1,6 +1,5 @@
 package org.monopoly.Model;
 
-import org.monopoly.Controller.Banker;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 import org.monopoly.Model.Players.Token;
@@ -51,15 +50,31 @@ public class Game {
 
         // Player takes standard turn
         while (Dice.getNumDoubles() == doublesNeeded && Dice.getNumDoubles() < 3) {
+            int currentPosition = currentPlayer.getPosition();
             currentPlayer.takeTurn(dice);
-            int pos = currentPlayer.getPosition();
-//            gameBoard.getTile(pos).executeStrategy(currentPlayer)
+            gameBoard.executeStrategyType(currentPlayer, "tile");
+
+            // Execute strategy of tile in new position if the player moved due to an action
+            while (currentPlayer.getPosition() != currentPosition) {
+                if (currentPlayer.isInJail()){ // turn ends if player moves to jail
+                    return;
+                }
+                currentPosition = currentPlayer.getPosition();
+                gameBoard.executeStrategyType(currentPlayer, "tile");
+            }
+
             if (dice.isDouble()) {
                 Dice.incrementNumDoubles();
             }
             doublesNeeded++;
         }
         Dice.resetNumDoubles();
+    }
+
+    /**
+     * Continues to the next players turn (ends the current players turn)
+     */
+    public void nextPlayersTurn(){
         turnManager.nextPlayer();
     }
 
@@ -70,6 +85,12 @@ public class Game {
     public void jailTurnLogic(Player player){
         if (player.getJailTurns() == 3){
             player.releaseFromJail();
+        } else if (player.hasCard("community:Get Out of Jail Free")){
+            player.removeCard("community:Get Out of Jail Free");
+            gameBoard.executeStrategyType(player, "community:Get Out of Jail Free");
+        } else if (player.hasCard("chance:Get Out of Jail Free.")){
+            player.removeCard("chance:Get Out of Jail Free.");
+            gameBoard.executeStrategyType(player, "chance:Get Out of Jail Free.");
         } else {
             dice.roll();
             if (dice.isDouble()){

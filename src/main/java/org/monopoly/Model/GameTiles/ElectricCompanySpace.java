@@ -1,7 +1,5 @@
 package org.monopoly.Model.GameTiles;
 
-import org.monopoly.Exceptions.InsufficientFundsException;
-import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 
 /**
@@ -51,12 +49,7 @@ public class ElectricCompanySpace extends GameTile {
     }
 
     @Override
-    public void executeStrategy(HumanPlayer player) {
-        if (!player.hasProperty("Electric Company")) {
-            player.subtractFromBalance(150);
-            player.addCard("Electric Company");
-        } else {
-            System.out.println(player.getName() + " already owns the Electric Company.");
-        }
+    public void executeStrategy(Player player) {
+
     }
 }

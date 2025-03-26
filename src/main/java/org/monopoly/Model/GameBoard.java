@@ -3,6 +3,7 @@ package org.monopoly.Model;
 import org.monopoly.Model.Cards.ChanceDeck;
 import org.monopoly.Model.Cards.CommunityChestDeck;
 import org.monopoly.Model.GameTiles.*;
+import org.monopoly.Model.Players.Player;
 
 import java.util.*;
 
@@ -106,5 +107,29 @@ public class GameBoard {
 
     public int getNumberOfTiles() {
         return tiles.size();
+    }
+
+    /**
+     * Executes a strategy of specified type for a player.
+     * @param player The player to execute the strategy for.
+     * @param type The type of strategy to execute. (i.e. "tile", "community:card", "chance:card")
+     */
+    public void executeStrategyType(Player player, String type) {
+        if (Objects.equals(type, "tile")) {
+            GameTile currTile = tiles.get(player.getPosition());
+            if (currTile instanceof ChanceSpace) {
+                chanceDeck.executeStrategy(player, drawChanceCard());
+            } else if (currTile instanceof CommunityChestSpace) {
+                communityChestDeck.executeStrategy(player, drawCommunityChestCard());
+            } else {
+//            currTile.executeStrategy(player);
+            }
+        } else if (type.contains("community:")){ // player uses get out of jail card
+            String card = type.split(":")[1];
+            communityChestDeck.executeStrategy(player, card);
+        } else if (type.contains("chance:")) { // player uses get out of jail card
+            String card = type.split(":")[1];
+            chanceDeck.executeStrategy(player, card);
+        }
     }
 }

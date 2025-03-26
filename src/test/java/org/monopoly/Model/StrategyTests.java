@@ -3,7 +3,7 @@ package org.monopoly.Model;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.monopoly.Controller.Strategy;
+import org.monopoly.Model.Strategy;
 import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Model.Cards.ChanceDeck;
 import org.monopoly.Model.Cards.CommunityChestDeck;
@@ -25,7 +25,7 @@ public class StrategyTests {
     public void testStrategy() {
         Strategy strategy = new Strategy() {
             @Override
-            public void executeStrategy(HumanPlayer humanPlayer) {
+            public void executeStrategy(Player humanPlayer) {
 
             }
         };
@@ -36,7 +36,7 @@ public class StrategyTests {
         Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
         Strategy strategy = new Strategy() {
             @Override
-            public void executeStrategy(HumanPlayer player) {
+            public void executeStrategy(Player player) {
             }
         };
         HumanPlayer player = new HumanPlayer("Test Player", token);

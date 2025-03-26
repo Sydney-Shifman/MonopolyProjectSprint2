@@ -1,11 +1,6 @@
 package org.monopoly.Model.GameTiles;
 
-import org.monopoly.Controller.Banker;
-import org.monopoly.Exceptions.InsufficientFundsException;
-import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
-
-import java.util.ArrayList;
 
 /**
  * Represents the Water Works Space element on the Game Board's Tiles.
@@ -54,7 +49,7 @@ public class WaterWorksSpace extends GameTile {
     }
 
     @Override
-    public void executeStrategy(HumanPlayer player) {
+    public void executeStrategy(Player player) {
 
     }
 }

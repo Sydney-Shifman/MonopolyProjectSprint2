@@ -1,6 +1,5 @@
 package org.monopoly.Model.GameTiles;
 
-import org.monopoly.Controller.Strategy;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 
@@ -43,8 +42,7 @@ public class GoSpace extends GameTile {
     }
 
     @Override
-    public void executeStrategy(HumanPlayer player) {
+    public void executeStrategy(Player player) {
         player.addToBalance(200);
     }
-
 }

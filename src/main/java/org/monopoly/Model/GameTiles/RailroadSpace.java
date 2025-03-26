@@ -1,6 +1,5 @@
 package org.monopoly.Model.GameTiles;
 
-import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 
 /**
@@ -52,12 +51,7 @@ public class RailroadSpace extends GameTile {
     }
 
     @Override
-    public void executeStrategy(HumanPlayer player) {
-        if (!player.hasProperty("Railroad Space")) {
-            player.subtractFromBalance(150);
-            player.addCard("Railroad Space");
-        } else {
-            System.out.println(player.getName() + " already owns the Railroad.");
-        }
+    public void executeStrategy(Player player) {
+
     }
 }

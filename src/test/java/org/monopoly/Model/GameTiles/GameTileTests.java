@@ -27,6 +27,11 @@ class TestGameTile extends GameTile {
     public void executeStrategy(HumanPlayer player) {
 
     }
+
+    @Override
+    public void executeStrategy(Player player) {
+
+    }
 }
 
 /**

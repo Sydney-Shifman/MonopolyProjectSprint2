@@ -1,7 +1,6 @@
 package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Model.Cards.ChanceDeck;
-import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 
 /**
@@ -44,6 +43,6 @@ public class ChanceSpace extends GameTile {
     }
 
     @Override
-    public void executeStrategy(HumanPlayer player) {
+    public void executeStrategy(Player player) {
     }
 }

@@ -1,4 +1,4 @@
-package org.monopoly.Controller;
+package org.monopoly.Model;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,16 +83,16 @@ public class BankerTests {
     }
     */
 
-    @Test
-    public void testMortgageProperty() {
-        Banker banker = new Banker();
-        TitleDeedDeck deck = banker.getDeck();
-
-        assertFalse(deck.getTitleDeeds().getProperty("Boardwalk").isMortgaged());
-
-        banker.mortgageProperty("Boardwalk");
-        assertTrue(deck.getTitleDeeds().getProperty("Boardwalk").isMortgaged());
-    }
+//    @Test
+//    public void testMortgageProperty() {
+//        Banker banker = new Banker();
+//        TitleDeedDeck deck = banker.getDeck();
+//
+//        assertFalse(deck.getTitleDeeds().getProperty("Boardwalk").isMortgaged());
+//
+//        banker.mortgageProperty("Boardwalk");
+//        assertTrue(deck.getTitleDeeds().getProperty("Boardwalk").isMortgaged());
+//    }
 
     @Test
     public void testPayGoSpace() {

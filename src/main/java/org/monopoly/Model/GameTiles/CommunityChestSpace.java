@@ -1,7 +1,7 @@
 package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Model.Cards.CommunityChestDeck;
-import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
 
 /**
  * Represents the Community Chest Space element on the Game Board's Tiles.
@@ -44,6 +44,6 @@ public class CommunityChestSpace extends GameTile {
     }
 
     @Override
-    public void executeStrategy(HumanPlayer player) {
+    public void executeStrategy(Player player) {
     }
 }

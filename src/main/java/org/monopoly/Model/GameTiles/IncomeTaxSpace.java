@@ -1,6 +1,5 @@
 package org.monopoly.Model.GameTiles;
 
-import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 
 /**
@@ -42,7 +41,7 @@ public class IncomeTaxSpace extends GameTile {
     }
 
     @Override
-    public void executeStrategy(HumanPlayer player) {
+    public void executeStrategy(Player player) {
         player.subtractFromBalance(200);
     }
 }

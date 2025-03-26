@@ -19,15 +19,6 @@ public class RailroadSpace extends GameTile {
     private String owner;
 
     /**
-     * Constructor to initialize a RailroadSpace.
-     *
-     * Developed by: shifmans
-     */
-    public RailroadSpace() {
-        super("Railroad Space", "");
-    }
-
-    /**
      * Constructor to initialize a RailroadSpace with the following parameters.
      * @param name Name for a RailroadSpace.
      * @param actions Actions for a RailroadSpace.
@@ -70,12 +61,12 @@ public class RailroadSpace extends GameTile {
     private String displayRailroadInfo() {
         return "Property Name: " + getName() + "\n" +
                 "Color Set: " + getColorGroup() + "\n" +
-                "Purchase Price: " + getPrice() + "\n" +
-                "Rent with 1 owned Railroad: " + getRentPrices().get(0) + "\n" +
-                "Rent with 2 owned Railroad: " + getRentPrices().get(1) + "\n" +
-                "Rent with 3 owned Railroad: " + getRentPrices().get(2) + "\n" +
-                "Rent with 4 owned Railroad: " + getRentPrices().get(3) + "\n" +
-                "Mortgage Value: " + getMortgageValue();
+                "Purchase Price: $" + getPrice() + "\n" +
+                "Rent with 1 Railroad Owned: $" + getRentPrices().get(0) + "\n" +
+                "Rent with 2 Railroads Owned: $" + getRentPrices().get(1) + "\n" +
+                "Rent with 3 Railroads Owned: $" + getRentPrices().get(2) + "\n" +
+                "Rent with 4 Railroads Owned: $" + getRentPrices().get(3) + "\n" +
+                "Mortgage Value: $" + getMortgageValue();
     }
 
     /**

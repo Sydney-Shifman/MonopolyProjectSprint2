@@ -20,16 +20,6 @@ public class ElectricCompanySpace extends GameTile {
     private String owner;
 
     /**
-     * Constructor to initialize a ElectricCompanySpace.
-     *
-     * Developed by: shifmans
-     */
-    public ElectricCompanySpace() {
-        super("Electric Company", "");
-
-    }
-
-    /**
      * Constructor to initialize a ElectricCompanySpace with all information.
      * @param actions Actions for a ElectricCompanySpace.
      * @param price Price for a ElectricCompanySpace.
@@ -71,11 +61,11 @@ public class ElectricCompanySpace extends GameTile {
     private String displayElectricCompanyInfo() {
         return "Property Name: " + getName() + "\n" +
                 "Color Set: " + getColorGroup() + "\n" +
-                "Purchase Price: " + getPrice() + "\n" +
+                "Purchase Price: $" + getPrice() + "\n" +
                 "Rent (without houses/hotels): Depends on dice roll\n" +
                 "If you own 1 Utility: Rent is 4 times the amount rolled on the dice.\n" +
                 "If you own 2 Utilities: Rent is 10 times the amount rolled on the dice.\n" +
-                "Mortgage Value: " + getMortgageValue() + "\n";
+                "Mortgage Value: $" + getMortgageValue();
     }
 
     /**

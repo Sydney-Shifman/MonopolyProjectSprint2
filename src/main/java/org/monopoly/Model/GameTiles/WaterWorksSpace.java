@@ -20,15 +20,6 @@ public class WaterWorksSpace extends GameTile {
     private String owner;
 
     /**
-     * Constructor to initialize a WaterWorksSpace.
-     *
-     * Developed by: shifmans
-     */
-    public WaterWorksSpace() {
-        super("Water Works Space", "");
-    }
-
-    /**
      * Constructor to initialize a WaterWorksSpace with all information.
      * @param actions Actions for a WaterWorksSpace.
      * @param price Price for a WaterWorksSpace.
@@ -70,11 +61,11 @@ public class WaterWorksSpace extends GameTile {
     private String displayWaterWorksInfo() {
         return "Property Name: " + getName() + "\n" +
                 "Color Set: " + getColorGroup() + "\n" +
-                "Purchase Price: " + getPrice() + "\n" +
+                "Purchase Price: $" + getPrice() + "\n" +
                 "Rent (without houses/hotels): Depends on dice roll\n" +
                 "If you own 1 Utility: Rent is 4 times the amount rolled on the dice.\n" +
                 "If you own 2 Utilities: Rent is 10 times the amount rolled on the dice.\n" +
-                "Mortgage Value: " + getMortgageValue() + "\n";
+                "Mortgage Value: $" + getMortgageValue();
     }
 
     /**

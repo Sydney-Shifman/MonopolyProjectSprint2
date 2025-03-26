@@ -97,7 +97,7 @@ public class Banker {
     }
 
     public void auctionProperty(String propertyName, ArrayList<String> players) {
-        int currentBidAmount = deck.getTitleDeeds().getProperty(propertyName).getPrice();
+        int currentBidAmount = 1;
         HashMap<String, Integer> currentBidding = new HashMap<>();
         String currentHighestBidder;
         int numRounds = 1;
@@ -155,6 +155,7 @@ public class Banker {
         ArrayList<String> bidders = new ArrayList<>();
         Scanner keyboard = new Scanner(System.in);
 
+        //Only asks players who have enough money to bid.
         for (String player:players) {
             System.out.println(player + " do you want to bid on this property (Y/N)? ");
             char answer = keyboard.next().charAt(0);

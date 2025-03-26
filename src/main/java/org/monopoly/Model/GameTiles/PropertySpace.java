@@ -11,9 +11,7 @@ import java.util.ArrayList;
  */
 public class PropertySpace extends GameTile {
     private int price;
-    private int basicRent; //Eventually will be replaced by rentPrices, causing refactoring.
     private ArrayList<Integer> rentPrices;
-    private String colorGroupString; //Eventually will be replaced by colorGroup, causing refactoring.
     private ColorGroup colorGroup;
     private int housePrice;
     private int hotelPrice;
@@ -23,23 +21,6 @@ public class PropertySpace extends GameTile {
     private int numHouses;
     private int numHotels;
     private String owner;
-
-    /**
-     * Constructor to initialize a PropertySpace with basic information.
-     * @param name Name of a PropertySpace.
-     * @param actions Actions for a PropertySpace.
-     * @param price Price for a PropertySpace.
-     * @param basicRent Rent for a PropertySpace.
-     * @param colorGroupString Color Group for a PropertySpace.
-     *
-     * Developed by: shifmans
-     */
-    public PropertySpace(String name, String actions, int price, int basicRent, String colorGroupString) {
-        super(name, actions);
-        this.price = price;
-        this.basicRent = basicRent;
-        this.colorGroupString = colorGroupString;
-    }
 
     /**
      * Constructor to initialize a PropertySpace with all information.
@@ -90,16 +71,16 @@ public class PropertySpace extends GameTile {
     private String displayPropertyInfo() {
         return "Property Name: " + getName() + "\n" +
                 "Color Set: " + getColorGroup() + "\n" +
-                "Purchase Price: " + getPrice() + "\n" +
-                "Rent (without houses/hotels): " + getRentPrices().get(0) + "\n" +
-                "Rent with 1 House: " + getRentPrices().get(1) + "\n" +
-                "Rent with 2 Houses: " + getRentPrices().get(2) + "\n" +
-                "Rent with 3 Houses: " + getRentPrices().get(3) + "\n" +
-                "Rent with 4 Houses: " + getRentPrices().get(4) + "\n" +
-                "Rent with Hotel: " + getRentPrices().get(5) + "\n" +
-                "Mortgage Value: " + getMortgageValue() + "\n" +
-                "House Price: " + getHousePrice() + "\n" +
-                "Hotel Price: " + getHotelPrice();
+                "Purchase Price: $" + getPrice() + "\n" +
+                "Rent (without houses/hotels): $" + getRentPrices().get(0) + "\n" +
+                "Rent with 1 House: $" + getRentPrices().get(1) + "\n" +
+                "Rent with 2 Houses: $" + getRentPrices().get(2) + "\n" +
+                "Rent with 3 Houses: $" + getRentPrices().get(3) + "\n" +
+                "Rent with 4 Houses: $" + getRentPrices().get(4) + "\n" +
+                "Rent with Hotel: $" + getRentPrices().get(5) + "\n" +
+                "Mortgage Value: $" + getMortgageValue() + "\n" +
+                "House Price: $" + getHousePrice() + "\n" +
+                "Hotel Price: $" + getHotelPrice();
     }
 
     /**

@@ -136,9 +136,9 @@ public class GameBoard {
     }
 
     /**
-     *
-     * @param player
-     * @param type
+     * Executes a strategy of specified type for a player.
+     * @param player The player to execute the strategy for.
+     * @param type The type of strategy to execute. (i.e. "tile", "community:card", "chance:card")
      */
     public void executeStrategyType(Player player, String type) {
         if (Objects.equals(type, "tile")) {

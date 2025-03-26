@@ -50,8 +50,19 @@ public class Game {
 
         // Player takes standard turn
         while (Dice.getNumDoubles() == doublesNeeded && Dice.getNumDoubles() < 3) {
+            int currentPosition = currentPlayer.getPosition();
             currentPlayer.takeTurn(dice);
             gameBoard.executeStrategyType(currentPlayer, "tile");
+
+            // Execute strategy of tile in new position if the player moved due to an action
+            while (currentPlayer.getPosition() != currentPosition) {
+                if (currentPlayer.isInJail()){ // turn ends if player moves to jail
+                    return;
+                }
+                currentPosition = currentPlayer.getPosition();
+                gameBoard.executeStrategyType(currentPlayer, "tile");
+            }
+
             if (dice.isDouble()) {
                 Dice.incrementNumDoubles();
             }
@@ -74,6 +85,12 @@ public class Game {
     public void jailTurnLogic(Player player){
         if (player.getJailTurns() == 3){
             player.releaseFromJail();
+        } else if (player.hasCard("community:Get Out of Jail Free")){
+            player.removeCard("community:Get Out of Jail Free");
+            gameBoard.executeStrategyType(player, "community:Get Out of Jail Free");
+        } else if (player.hasCard("chance:Get Out of Jail Free.")){
+            player.removeCard("chance:Get Out of Jail Free.");
+            gameBoard.executeStrategyType(player, "chance:Get Out of Jail Free.");
         } else {
             dice.roll();
             if (dice.isDouble()){

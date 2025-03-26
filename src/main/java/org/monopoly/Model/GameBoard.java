@@ -3,6 +3,8 @@ package org.monopoly.Model;
 import org.monopoly.Model.Cards.ChanceDeck;
 import org.monopoly.Model.Cards.CommunityChestDeck;
 import org.monopoly.Model.GameTiles.*;
+import org.monopoly.Model.Players.Player;
+import org.monopoly.Model.Players.Token;
 
 import java.util.*;
 
@@ -16,6 +18,7 @@ public class GameBoard {
     private List<GameTile> tiles;
     private CommunityChestDeck communityChestDeck;
     private ChanceDeck chanceDeck;
+    private ArrayList<Token>[] tokens;
 
     /**
      * Constructs a GameSpace object
@@ -25,6 +28,10 @@ public class GameBoard {
         this.communityChestDeck = new CommunityChestDeck();
         this.chanceDeck = new ChanceDeck();
         initializeBoard();
+        tokens = new ArrayList[40];
+        for (int i = 0; i < 40; i++) {
+            tokens[i] = new ArrayList<>();
+        }
     }
 
     /**
@@ -106,5 +113,43 @@ public class GameBoard {
 
     public int getNumberOfTiles() {
         return tiles.size();
+    }
+
+    /**
+     * Adds a specified token to a specified position on the game board.
+     * @param position The position on the game board.
+     * @param token The token to add to the position.
+     * @author walshj05
+     */
+    public void addToken(int position, Token token) {
+        tokens[position].add(token);
+    }
+
+    /**
+     * Removes a specified token from a specified position on the game board.
+     * @param position The position on the game board.
+     * @param token The token to remove from the position.
+     * @author walshj05
+     */
+    public void removeToken(int position, Token token) {
+        tokens[position].remove(token);
+    }
+
+    /**
+     *
+     * @param player
+     * @param type
+     */
+    public void executeStrategyType(Player player, String type) {
+        if (Objects.equals(type, "tile")) {
+            GameTile currTile = tiles.get(player.getPosition());
+//            currTile.executeStrategy(player);
+        } else if (type.contains("community:")){
+            String card = type.split(":")[1];
+            communityChestDeck.executeStrategy(player, card);
+        } else if (type.contains("chance:")) {
+            String card = type.split(":")[1];
+            chanceDeck.executeStrategy(player, card);
+        }
     }
 }

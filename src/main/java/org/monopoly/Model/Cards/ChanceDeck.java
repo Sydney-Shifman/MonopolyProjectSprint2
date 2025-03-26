@@ -1,6 +1,6 @@
 package org.monopoly.Model.Cards;
 
-import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
 
 import java.util.ArrayList;
 
@@ -57,10 +57,10 @@ public class ChanceDeck extends CardDeck {
 
 
     @Override
-    public void executeStrategy(HumanPlayer humanPlayer) {
+    public void executeStrategy(Player player) {
     }
 
     // todo add a method for the player to use a chance card
-    public void executeStrategy(HumanPlayer humanPlayer, String card) {
+    public void executeStrategy(Player player, String card) {
     }
 }

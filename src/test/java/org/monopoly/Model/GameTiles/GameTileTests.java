@@ -1,9 +1,11 @@
 package org.monopoly.Model.GameTiles;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
 
 /**
  * Represents a class to test the Tiles on the Game Board created by GameTile.
@@ -19,6 +21,11 @@ class TestGameTile extends GameTile {
     @Override
     public String landOn() {
         return super.landOn();
+    }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+
     }
 }
 

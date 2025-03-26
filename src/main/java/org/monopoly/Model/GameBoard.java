@@ -33,12 +33,12 @@ public class GameBoard {
     private void initializeBoard() {
         tiles.add(new GoSpace());
         tiles.add(new PropertySpace("Mediterranean Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 60, 2, "Brown"));
-        tiles.add(new CommunityChestSpace());
+        tiles.add(new CommunityChestSpace(communityChestDeck));
         tiles.add(new PropertySpace("Baltic Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 60, 4, "Brown"));
         tiles.add(new IncomeTaxSpace());
         tiles.add(new RailroadSpace());
         tiles.add(new PropertySpace("Oriental Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 100, 6, "Light Blue"));
-        tiles.add(new ChanceSpace());
+        tiles.add(new ChanceSpace(chanceDeck));
         tiles.add(new PropertySpace("Vermont Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 100, 6, "Light Blue"));
         tiles.add(new PropertySpace("Connecticut Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 120, 8, "Light Blue"));
         tiles.add(new JailSpace());
@@ -48,12 +48,12 @@ public class GameBoard {
         tiles.add(new PropertySpace("Virginia Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 160, 12, "Pink"));
         tiles.add(new RailroadSpace());
         tiles.add(new PropertySpace("St. James Place", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 180, 14, "Orange"));
-        tiles.add(new CommunityChestSpace());
+        tiles.add(new CommunityChestSpace(communityChestDeck));
         tiles.add(new PropertySpace("Tennessee Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 200, 16, "Orange"));
         tiles.add(new PropertySpace("New York Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage",200, 16, "Orange"));
         tiles.add(new FreeParkingSpace());
         tiles.add(new PropertySpace("Kentucky Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 220, 18, "Red"));
-        tiles.add(new ChanceSpace());
+        tiles.add(new ChanceSpace(chanceDeck));
         tiles.add(new PropertySpace("Indiana Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 240, 20, "Red"));
         tiles.add(new PropertySpace("Illinois Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 260, 22, "Red"));
         tiles.add(new RailroadSpace());
@@ -64,10 +64,10 @@ public class GameBoard {
         tiles.add(new GoToJailSpace());
         tiles.add(new PropertySpace("Pacific Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 300, 26, "Green"));
         tiles.add(new PropertySpace("North Carolina Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 300, 26, "Green"));
-        tiles.add(new CommunityChestSpace());
+        tiles.add(new CommunityChestSpace(communityChestDeck));
         tiles.add(new PropertySpace("Pennsylvania Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 320, 28, "Green"));
         tiles.add(new RailroadSpace());
-        tiles.add(new ChanceSpace());
+        tiles.add(new ChanceSpace(chanceDeck));
         tiles.add(new PropertySpace("Park Place", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 350, 35, "Blue"));
         tiles.add(new LuxuryTaxSpace());
         tiles.add(new PropertySpace("Boardwalk", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 400, 50, "Blue"));

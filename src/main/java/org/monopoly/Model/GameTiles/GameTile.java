@@ -1,6 +1,7 @@
 package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Controller.Strategy;
+import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 

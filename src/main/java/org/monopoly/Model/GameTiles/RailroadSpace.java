@@ -1,5 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Railroad Space element on the Game Board's Tiles.
  *
@@ -46,5 +49,15 @@ public class RailroadSpace extends GameTile {
                 "Mortgage Value: $100\n" +
                 "Houses: Cannot build houses or hotels\n" +
                 "Hotel: Cannot build hotels";
+    }
+
+    @Override
+    public void executeStrategy(HumanPlayer player) {
+        if (!player.hasProperty("Railroad Space")) {
+            player.subtractFromBalance(150);
+            player.addCard("Railroad Space");
+        } else {
+            System.out.println(player.getName() + " already owns the Railroad.");
+        }
     }
 }

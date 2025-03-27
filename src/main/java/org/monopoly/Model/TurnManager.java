@@ -42,6 +42,9 @@ public class TurnManager {
     public void removePlayer(Player player) {
         for (int i = 0; i < numPlayers; i++) {
             if (players.get(i) == player) {
+                if (currentPlayerIndex == i) {
+                    nextPlayer();
+                }
                 players.remove(i);
                 break;
             }

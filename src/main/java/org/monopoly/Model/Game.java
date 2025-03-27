@@ -50,8 +50,8 @@ public class Game {
 
         // Player takes standard turn
         while (Dice.getNumDoubles() == doublesNeeded && Dice.getNumDoubles() < 3) {
-            int currentPosition = currentPlayer.getPosition();
             currentPlayer.takeTurn(dice);
+            int currentPosition = currentPlayer.getPosition();
             gameBoard.executeStrategyType(currentPlayer, "tile");
 
             // Execute strategy of tile in new position if the player moved due to an action

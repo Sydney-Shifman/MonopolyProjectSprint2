@@ -1,6 +1,9 @@
 package org.monopoly.Model.Cards;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+import org.monopoly.Model.Players.Token;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -106,5 +109,17 @@ class ChanceDeckTest {
             }
         }
         assertTrue(validCard1 && validCard2, "Card drawn should be 'Advance to Boardwalk.'");
+    }
+
+    @Test
+    void testExecuteStrategyWorks(){
+        ChanceDeck chanceDeck = new ChanceDeck();
+        Player player = new HumanPlayer("Player1", new Token("Dog", "ScottieDog.png"));
+        chanceDeck.executeStrategy(player);
+        assertEquals(0, player.getPosition(), "Player position should not change");
+
+        String card = chanceDeck.drawCard();
+        chanceDeck.executeStrategy(player, card);
+        assertNotNull(player);
     }
 }

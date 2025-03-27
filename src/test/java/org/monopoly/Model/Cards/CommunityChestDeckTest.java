@@ -1,6 +1,9 @@
 package org.monopoly.Model.Cards;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
+import org.monopoly.Model.Players.Token;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -78,5 +81,17 @@ class CommunityChestDeckTest {
         String card1 = communityChestDeck.drawCard();
         String card2 = communityChestDeck.drawCard();
         assertNotEquals(card1, card2, "Two cards drawn should not be the same");
+    }
+
+    @Test
+    void testExecuteStrategyWorks(){
+        CommunityChestDeck communityChestDeck = new CommunityChestDeck();
+        Player player = new HumanPlayer("Player1", new Token("Dog", "ScottieDog.png"));
+        communityChestDeck.executeStrategy(player);
+        assertEquals(0, player.getPosition(), "Player position should not change");
+
+        String card = communityChestDeck.drawCard();
+        communityChestDeck.executeStrategy(player, card);
+        assertNotNull(player);
     }
 }

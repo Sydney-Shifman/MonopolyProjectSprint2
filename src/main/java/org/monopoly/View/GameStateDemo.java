@@ -3,6 +3,10 @@ package org.monopoly.View;
 import org.monopoly.Model.Game;
 import org.monopoly.Model.Players.Token;
 
+/**
+ * This class is a demo of the Game class
+ * @author walshj05
+ */
 public class GameStateDemo {
     public static void main(String[] args) {
         System.out.println("This is a demo of the Game class");

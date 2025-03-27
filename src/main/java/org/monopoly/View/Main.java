@@ -4,6 +4,10 @@ import org.monopoly.Exceptions.InsufficientFundsException;
 
 import java.util.Scanner;
 
+/**
+ * Main class to run the Monopoly game
+ * @author walshj05
+ */
 public class Main {
     public static void main(String[] args) throws InsufficientFundsException {
         Scanner input = new Scanner(System.in);

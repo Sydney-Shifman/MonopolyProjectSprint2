@@ -13,6 +13,7 @@ public class CommunityChestDeck extends CardDeck {
     /**
      * Creates a deck of Community Chest cards
      * Shuffles the draw deck
+     * @author walshj05
      */
     public CommunityChestDeck() {
         super(CommunityChestDeck.initializeCards());
@@ -21,6 +22,7 @@ public class CommunityChestDeck extends CardDeck {
     /**
      * Initializes the Community Chest deck with the cards
      * @return ArrayList of Community Chest cards
+     * @author walshj05
      */
     private static ArrayList<String> initializeCards(){
         ArrayList<String> communityChestCards = new ArrayList<>();
@@ -48,6 +50,7 @@ public class CommunityChestDeck extends CardDeck {
      * - If the draw pile is empty, reshuffles the discard pile into the draw pile
      * - If both piles are empty, returns a message that there are no cards left
      * @return String of the card drawn
+     * @author walshj05
      */
     @Override
     public String drawCard() {
@@ -63,6 +66,7 @@ public class CommunityChestDeck extends CardDeck {
 
     /**
      * Returns the card to the discard pile
+     * @author walshj05
      */
     public void returnCardToDeck(String card) {
         if (unavailableCards.contains(card)) {
@@ -74,7 +78,8 @@ public class CommunityChestDeck extends CardDeck {
     /**
      * Executes the strategy for the Community Chest cards
      * @param player Player
-     * @param card String
+     * @param card String card
+     * @author walshj05
      */
     public void executeStrategy(Player player, String card) {
         switch (card) {
@@ -131,6 +136,11 @@ public class CommunityChestDeck extends CardDeck {
         returnCardToDeck(card);
     }
 
+    /**
+     * Executes the strategy for the Community Chest cards
+     * @param player The player to execute the strategy for.
+     * @author walshj05
+     */
     @Override
     public void executeStrategy(Player player) {
     }

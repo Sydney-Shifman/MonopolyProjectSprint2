@@ -27,8 +27,13 @@ public class HumanPlayer extends Player {
     private HashMap<String, Integer> monopolies;
     private ArrayList<String> cards;
     private int jailTurns;
-// todo add functionality for the player to add a house or hotel to a property. must have a monopoly on the property to do so
 
+    /**
+     * Constructor for a HumanPlayer
+     * @param name String
+     * @param token Token
+     * @author walshj05
+     */
     public HumanPlayer(String name, Token token) {
         this.name = name;
         this.token = token;
@@ -47,6 +52,7 @@ public class HumanPlayer extends Player {
 
     /**
      * Getters and Setters
+     * @author walshj05
      */
     public String getName() {
         return name;
@@ -81,6 +87,7 @@ public class HumanPlayer extends Player {
      * Moves player a certain number of spaces
      * Also checks if they are in jail or not
      * @param spaces num spaces moved
+     * @author walshj05
      */
     public void move(int spaces) {
         if (!inJail) {
@@ -93,6 +100,7 @@ public class HumanPlayer extends Player {
 
     /**
      * Puts player in jail
+     * @author walshj05
      */
     public void goToJail() {
         inJail = true;
@@ -103,6 +111,7 @@ public class HumanPlayer extends Player {
     /**
      * Checks to see if the player is in jail
      * @return boolean
+     * @author walshj05
      */
     public boolean isInJail() {
         return inJail;
@@ -110,6 +119,7 @@ public class HumanPlayer extends Player {
 
     /**
      * Releases player from jail
+     * @author walshj05
      */
     public void releaseFromJail() {
         inJail = false;
@@ -119,11 +129,11 @@ public class HumanPlayer extends Player {
     /**
      * A method for a player to take a turn in the game
      * @param dice Dice object
+     * @author walshj05
      */
     public void takeTurn (Dice dice) {
         if (inJail) {
             System.out.println(name + " is in jail and cannot roll.");
-//            return;
         }
 
         int[] rollResult = dice.roll();
@@ -140,6 +150,7 @@ public class HumanPlayer extends Player {
      * Player buys a property
      * @param property String
      * @throws InsufficientFundsException exception
+     * @author walshj05
      */
     public void purchaseProperty(String property, int price) throws InsufficientFundsException {
         if (balance >= price) {
@@ -155,6 +166,7 @@ public class HumanPlayer extends Player {
      * Player sells a property
      * @param property String
      * @throws NoSuchPropertyException exception
+     * @author walshj05
      */
     public void mortgageProperty(String property, int mortgageCost) throws NoSuchPropertyException {
         if (propertiesOwned.contains(property)) {
@@ -170,6 +182,7 @@ public class HumanPlayer extends Player {
      * Player sells a property
      * @param property String
      * @throws NoSuchPropertyException exception
+     * @author walshj05
      */
     public void sellProperty(String property, int propertyCost) throws NoSuchPropertyException {
         if (propertiesOwned.contains(property)) {
@@ -184,6 +197,7 @@ public class HumanPlayer extends Player {
     /**
      * Checks if the player has a monopoly
      * @return boolean
+     * @author walshj05
      */
     public boolean hasMonopoly(String colorGroup) {
         return monopolies.containsKey(colorGroup);
@@ -193,6 +207,7 @@ public class HumanPlayer extends Player {
      * Adds a house to a property
      * @param property String
      * @throws HouseCannotBeBuiltException exception
+     * @author walshj05
      */
     public void addHouse(String property, String colorGroup) throws HouseCannotBeBuiltException {
         if (hasMonopoly(colorGroup)) {
@@ -206,6 +221,7 @@ public class HumanPlayer extends Player {
      * Adds a hotel to a property
      * @param property String
      * @throws HotelCannotBeBuiltException exception
+     * @author walshj05
      */
     public void addHotel(String property) throws HotelCannotBeBuiltException {
         if (numHouses == 4) {
@@ -219,6 +235,7 @@ public class HumanPlayer extends Player {
     /**
      * Adds a certain amount to the player's balance
      * @param amount int
+     * @author walshj05
      */
     public void addToBalance(int amount) {
         this.balance += amount;
@@ -227,6 +244,7 @@ public class HumanPlayer extends Player {
     /**
      * Subtracts a certain amount from the player's balance
      * @param amount int
+     * @author walshj05
      */
     public void subtractFromBalance(int amount) {
         if (this.balance - amount < 0) {
@@ -240,6 +258,7 @@ public class HumanPlayer extends Player {
      * Checks if the player has a certain property
      * @param property String
      * @return boolean
+     * @author walshj05
      */
     public boolean hasProperty(String property) {
         return propertiesOwned.contains(property);
@@ -248,6 +267,7 @@ public class HumanPlayer extends Player {
     /**
      * Adds a community chest card to the player's hand
      * @param card String
+     * @author walshj05
      */
     public void addCard(String card) {
         cards.add(card);
@@ -256,6 +276,7 @@ public class HumanPlayer extends Player {
     /**
      * Removes a community chest card from the player's hand
      * @param card String
+     * @author walshj05
      */
     public void removeCard(String card) {
         cards.remove(card);
@@ -265,6 +286,7 @@ public class HumanPlayer extends Player {
      * Checks if the player has a certain community chest card
      * @param card String
      * @return boolean
+     * @author walshj05
      */
     public boolean hasCard(String card) {
         return cards.contains(card);
@@ -273,18 +295,25 @@ public class HumanPlayer extends Player {
     /**
      * Checks if the player is bankrupt
      * @return boolean
+     * @author walshj05
      */
     public boolean isBankrupt() {
         return balance == 0;
     }
 
+    /**
+     * Returns a string representation of the player
+     * @return String
+     * @author walshj05
+     */
     @Override
     public String toString() {
         return name + " (Token: " + token.getName() + ")";
     }
 
     /**
-     * Checks if the player has a monopoly,
+     * Checks if the player has a monopoly.
+     * @author walshj05
      */
     private void checkForMonopoly() {
         ArrayList<String> currMonopolies = new ArrayList<>();
@@ -315,21 +344,39 @@ public class HumanPlayer extends Player {
         updateMonopolies(currMonopolies);
     }
 
+    /**
+     * Gets the number of turns the player has been in jail
+     * @return int
+     * @author walshj05
+     */
     @Override
     public int getJailTurns() {
         return jailTurns;
     }
 
+    /**
+     * Resets the number of turns the player has been in jail
+     * @author walshj05
+     */
     @Override
     public void resetJailTurns(){
         this.jailTurns = 0;
     }
 
+    /**
+     * Increments the number of turns the player has been in jail
+     * @author walshj05
+     */
     @Override
     public void incrementJailTurns(){
         this.jailTurns++;
     }
 
+    /**
+     * Updates the monopolies of the player
+     * @author walshj05
+     * @param monopolies ArrayList of monopolies
+     */
     private void updateMonopolies(ArrayList<String> monopolies) {
         for (String monopoly : monopolies) {
             if (!this.monopolies.containsKey(monopoly)) {

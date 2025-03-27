@@ -6,6 +6,10 @@ import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Exceptions.NoSuchPropertyException;
 import org.monopoly.Model.Dice;
 
+/**
+ * Abstract class for the different types of players in the Monopoly game.
+ * @author walshj05
+ */
 public abstract class Player {
 
     public abstract String getName();

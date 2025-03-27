@@ -1,5 +1,6 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
@@ -236,6 +237,21 @@ public class PropertySpace extends GameTile {
 
     @Override
     public void executeStrategy(Player player) {
-
+        if (player.hasProperty(getName())) {
+            System.out.println("You already own the " + getName() + "!");
+        } else {
+            if (owner == null || owner.isEmpty()) { // Proper null check
+                System.out.println("You can buy the " + getName() + " for $" + price);
+                System.out.println("Or property can be auctioned");
+            } else {
+                System.out.println(getOwner() + " already owns the " + getName() + "!");
+            }
+            try {
+                player.purchaseProperty(getName(), price);
+                System.out.println("You bought the " + getName());
+            } catch (InsufficientFundsException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

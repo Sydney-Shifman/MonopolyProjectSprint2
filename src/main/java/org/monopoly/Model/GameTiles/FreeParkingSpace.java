@@ -42,6 +42,6 @@ public class FreeParkingSpace extends GameTile {
 
     @Override
     public void executeStrategy(Player player) {
-        doNothing();
+        System.out.println(doNothing());
     }
 }

@@ -177,11 +177,15 @@ public class GameBoard {
         if (Objects.equals(type, "tile")) {
             GameTile currTile = tiles.get(player.getPosition());
             if (currTile instanceof ChanceSpace) {
-                chanceDeck.executeStrategy(player, drawChanceCard());
+                String card = drawChanceCard();
+                System.out.println(card);
+                chanceDeck.executeStrategy(player, card);
             } else if (currTile instanceof CommunityChestSpace) {
-                communityChestDeck.executeStrategy(player, drawCommunityChestCard());
+                String card = drawCommunityChestCard();
+                System.out.println(card);
+                communityChestDeck.executeStrategy(player, card);
             } else {
-//            currTile.executeStrategy(player);
+            currTile.executeStrategy(player);
             }
         } else if (type.contains("community:")){ // player uses get out of jail card
             String card = type.split(":")[1];

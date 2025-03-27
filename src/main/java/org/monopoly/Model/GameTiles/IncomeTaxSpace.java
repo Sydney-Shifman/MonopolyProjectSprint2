@@ -37,11 +37,12 @@ public class IncomeTaxSpace extends GameTile {
      * Developed by: shifmans
      */
     private String payTax() {
-        return "Pay $200";
+        return "Pay $200 in Income Tax!";
     }
 
     @Override
     public void executeStrategy(Player player) {
         player.subtractFromBalance(200);
+        System.out.println(payTax());
     }
 }

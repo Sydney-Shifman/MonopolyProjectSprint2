@@ -20,7 +20,7 @@ public class ElementSpacesLandOnTests {
     public void testGoSpaceLandOnCorrectActions() {
         GoSpace space = new GoSpace();
 
-        assertEquals("Collect $200", space.landOn());
+        assertEquals("Collect $200 in salary for Passing Go!", space.landOn());
     }
 
     @Test
@@ -246,21 +246,21 @@ public class ElementSpacesLandOnTests {
     public void testLuxuryTaxSpaceLandOnCorrectActions() {
         LuxuryTaxSpace space = new LuxuryTaxSpace();
 
-        assertEquals("Pay $100", space.landOn());
+        assertEquals("Pay $100 in Luxury Tax!", space.landOn());
     }
 
     @Test
     public void testLuxuryTaxSpaceLandOnIncorrectActions() {
         LuxuryTaxSpace space = new LuxuryTaxSpace();
 
-        assertNotEquals("Pay $200", space.landOn());
+        assertNotEquals("Pay $200 in Luxury Tax!", space.landOn());
     }
 
     @Test
     public void testIncomeTaxSpaceLandOnCorrectActions() {
         IncomeTaxSpace space = new IncomeTaxSpace();
 
-        assertEquals("Pay $200", space.landOn());
+        assertEquals("Pay $200 in Income Tax!", space.landOn());
     }
 
     @Test

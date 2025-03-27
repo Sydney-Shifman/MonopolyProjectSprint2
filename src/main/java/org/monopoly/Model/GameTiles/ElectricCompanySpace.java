@@ -1,5 +1,6 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Dice;
 import org.monopoly.Model.Players.Player;
@@ -18,7 +19,6 @@ public class ElectricCompanySpace extends GameTile {
     private int mortgageValue;
     private int unmortgageValue;
     private boolean isMortgaged;
-    private String owner;
 
     /**
      * Constructor to initialize a ElectricCompanySpace with all information.
@@ -38,7 +38,6 @@ public class ElectricCompanySpace extends GameTile {
         this.mortgageValue = mortgageValue;
         this.unmortgageValue = mortgageValue + (int) (mortgageValue * 0.1); //Mortgage value plus 10% interest
         this.isMortgaged = false;
-        this.owner = "";
     }
 
     /**
@@ -131,6 +130,21 @@ public class ElectricCompanySpace extends GameTile {
 
     @Override
     public void executeStrategy(Player player) {
-
+        if (player.hasProperty(getName())) {
+            System.out.println("You already own the " + getName() + "!");
+        } else {
+            if (getOwner() == null || getOwner().isEmpty()) { // Proper null check
+                System.out.println("You can buy the " + getName() + " for $" + price);
+                System.out.println("Or property can be auctioned");
+            } else {
+                System.out.println(getOwner() + " already owns the " + getName() + "!");
+            }
+            try {
+                player.purchaseProperty(getName(), price);
+                System.out.println("Player bought " + getName());
+            } catch (InsufficientFundsException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

@@ -37,11 +37,12 @@ public class LuxuryTaxSpace extends GameTile {
      * Developed by: shifmans
      */
     private String payTax() {
-        return "Pay $100";
+        return "Pay $100 in Luxury Tax!";
     }
 
     @Override
     public void executeStrategy(Player player) {
         player.subtractFromBalance(100);
+        System.out.println(payTax());
     }
 }

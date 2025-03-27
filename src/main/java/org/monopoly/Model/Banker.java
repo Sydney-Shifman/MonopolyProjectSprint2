@@ -1,101 +1,145 @@
 package org.monopoly.Model;
 
+import org.monopoly.Model.GameTiles.PropertySpace;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Cards.TitleDeedDeck;
 import java.util.*;
 
 public class Banker {
-    private double balance;
+    private double bankBalance;
     private TitleDeedDeck deck;
-    private int houses;
-    private int hotels;
+    private int numHouses;
+    private int numHotels;
 
     public Banker() {
-        this.balance = Double.POSITIVE_INFINITY;
+        this.bankBalance = Double.POSITIVE_INFINITY;
         this.deck = new TitleDeedDeck();
-        this.houses = 32;
-        this.hotels = 32;
+        this.numHouses = 32;
+        this.numHotels = 32;
     }
 
     //Add money and player component
     public void sellProperty(String propertyName) {
+        //Mortgaged properties can be sold at an agreed upon price.
         deck.drawCard(propertyName);
     }
 
     public void sellHouse(String propertyName) {
-        //Wait for houses to be added to PropertySpace.
-        if (this.houses == 0) {
-            throw new IllegalStateException("There are no houses left.");
+        if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
+            if (this.numHouses == 0) {
+                throw new IllegalStateException("There are no houses left.");
+            }
+            else {
+                this.numHouses -= 1;
+
+                int numPropertyHouses = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHouses();
+                ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHouses(numPropertyHouses+1);
+            }
         }
+
         else {
-            this.houses -= 1;
+            throw new IllegalArgumentException("This property does not have houses.");
         }
     }
 
     public void buyHouses(String propertyName) {
-        //Linked to Player selling house?
-        this.houses += 1;
+        if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
+            if (this.numHouses == 0) {
+                throw new IllegalStateException("There are no houses left.");
+            }
+            else {
+                this.numHouses += 1;
+
+                int numPropertyHouses = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHouses();
+                ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHouses(numPropertyHouses-1);
+            }
+        }
+
+        else {
+            throw new IllegalArgumentException("This property does not have houses.");
+        }
     }
 
     public void sellHotel(String propertyName) {
-        //Wait for hotels to be added to PropertySpace.
-        if (this.hotels == 0) {
-            throw new IllegalStateException("There are no hotels left.");
+        if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
+            if (this.numHotels == 0) {
+                throw new IllegalStateException("There are no hotels left.");
+            }
+            else {
+                this.numHotels -= 1;
+
+                int numPropertyHotels = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHotels();
+                ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHotels(numPropertyHotels+1);
+            }
         }
+
         else {
-            this.hotels -= 1;
+            throw new IllegalArgumentException("This property does not have hotels.");
         }
     }
 
     public void buyHotels(String propertyName) {
-        //Linked to Player selling hotel?
-        this.hotels += 1;
+        if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
+            if (this.numHotels == 0) {
+                throw new IllegalStateException("There are no hotels left.");
+            }
+            else {
+                this.numHotels += 1;
+
+                int numPropertyHotels = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHotels();
+                ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHotels(numPropertyHotels-1);
+            }
+        }
+
+        else {
+            throw new IllegalArgumentException("This property does not have hotels.");
+        }
     }
 
     public void auctionProperty(String propertyName, ArrayList<String> players) {
-//        int currentBidAmount = deck.getTitleDeeds().getProperty(propertyName).getPrice();
-//        HashMap<String, Integer> currentBidding = new HashMap<>();
-//        String currentHighestBidder;
-//        int numRounds = 1;
-//
-//        while (true) {
-//            if (numRounds == 1) {
-//                System.out.println("Starting Bid for " + propertyName + " starting at $" + currentBidAmount);
-//            }
-//            else {
-//                System.out.println("Round " + numRounds + ", the bid now starts at $" + currentBidAmount);
-//            }
-//
-//            ArrayList<String> bidders = getCurrentBidders(players);
-//            ArrayList<Integer> bidAmounts = getBidAmount(currentBidAmount, bidders);
-//
-//            /*
-//            if ((numRounds == 1) && (bidders.isEmpty())) {
-//                //Return property to pile and get rid of ownership
-//            }
-//             */
-//
-//            if (bidders.size() <= 1) {
-//                endAuction(propertyName, bidders, bidAmounts);
-//                break;
-//            }
-//
-//            System.out.println(bidders);
-//            System.out.println(bidAmounts);
-//
-//            for (int i = 0; i < bidders.size(); i++) {
-//                currentBidding.put(bidders.get(i), bidAmounts.get(i));
-//            }
-//            System.out.println(currentBidding);
-//
-//            currentHighestBidder = getHighestBidder(currentBidding);
-//            System.out.println(currentHighestBidder);
-//
-//            currentBidAmount = currentBidding.get(currentHighestBidder);
-//            System.out.println(currentBidAmount);
-//
-//            numRounds++;
-//        }
+        int currentBidAmount = 1;
+        HashMap<String, Integer> currentBidding = new HashMap<>();
+        String currentHighestBidder;
+        int numRounds = 1;
+
+        while (true) {
+            if (numRounds == 1) {
+                System.out.println("Starting Bid for " + propertyName + " starting at $" + currentBidAmount);
+            }
+            else {
+                System.out.println("Round " + numRounds + ", the bid now starts at $" + currentBidAmount);
+            }
+
+            ArrayList<String> bidders = getCurrentBidders(players);
+            ArrayList<Integer> bidAmounts = getBidAmount(currentBidAmount, bidders);
+
+            /*
+            if ((numRounds == 1) && (bidders.isEmpty())) {
+                //Return property to pile and get rid of ownership
+            }
+             */
+
+            if (bidders.size() <= 1) {
+                endAuction(propertyName, bidders, bidAmounts);
+                break;
+            }
+
+            System.out.println(bidders);
+            System.out.println(bidAmounts);
+
+            for (int i = 0; i < bidders.size(); i++) {
+                currentBidding.put(bidders.get(i), bidAmounts.get(i));
+            }
+            System.out.println(currentBidding);
+
+            currentHighestBidder = getHighestBidder(currentBidding);
+            System.out.println(currentHighestBidder);
+
+            currentBidAmount = currentBidding.get(currentHighestBidder);
+            System.out.println(currentBidAmount);
+
+            numRounds++;
+        }
     }
 
     private void endAuction(String propertyName, ArrayList<String> bidders, ArrayList<Integer> bidAmounts) {
@@ -111,6 +155,7 @@ public class Banker {
         ArrayList<String> bidders = new ArrayList<>();
         Scanner keyboard = new Scanner(System.in);
 
+        //Only asks players who have enough money to bid.
         for (String player:players) {
             System.out.println(player + " do you want to bid on this property (Y/N)? ");
             char answer = keyboard.next().charAt(0);
@@ -161,17 +206,17 @@ public class Banker {
     }
 
     public void mortgageProperty(String propertyName) {
-//        deck.getTitleDeeds().getProperties().get(propertyName).setMortgagedStatus(true);
+        deck.getTitleDeeds().getProperties().get(propertyName).setMortgagedStatus(true);
     }
 
     public void payGoSpace(HumanPlayer humanPlayerName) {
         humanPlayerName.addToBalance(200);
-        this.balance -= 200;
+        this.bankBalance -= 200;
     }
 
     public void receiveMoney(HumanPlayer humanPlayerName, int money) {
         humanPlayerName.subtractFromBalance(money);
-        this.balance += money;
+        this.bankBalance += money;
     }
 
     public TitleDeedDeck getDeck() {
@@ -179,14 +224,14 @@ public class Banker {
     }
 
     public int getHouses() {
-        return this.houses;
+        return this.numHouses;
     }
 
     public int getHotels() {
-        return this.hotels;
+        return this.numHotels;
     }
 
     public double getBalance() {
-        return this.balance;
+        return this.bankBalance;
     }
 }

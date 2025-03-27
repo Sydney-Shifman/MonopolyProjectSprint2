@@ -1,6 +1,6 @@
 package org.monopoly.Model.GameTiles;
 
-import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Strategy;
 
 import java.util.ArrayList;
@@ -15,6 +15,12 @@ public abstract class GameTile implements Strategy {
     protected String actions;
     protected ArrayList<String> tokens;
     protected final int MAX_CAPACITY = 9;
+    private int price;
+    private ColorGroup colorGroup;
+    private int mortgageValue;
+    private int unmortgageValue;
+    private boolean isMortgaged;
+    private String owner;
 
     /**
      * Constructor to initialize a GameTile.
@@ -91,5 +97,81 @@ public abstract class GameTile implements Strategy {
         tokens.remove(token);
     }
 
-    public void executeStrategy(HumanPlayer player) {}
+    /**
+     * Gets the price of a GameTile.
+     * @return The price of a GameTile.
+     *
+     * Developed by: shifmans
+     */
+    public int getPrice() {
+        return price;
+    }
+
+    /**
+     * Gets the color group of a GameTile.
+     * @return The color group of a GameTile.
+     *
+     * Developed by: shifmans
+     */
+    public ColorGroup getColorGroup() {
+        return colorGroup;
+    }
+
+    /**
+     * Gets the mortgage value of a GameTile.
+     * @return The mortgage value of a GameTile.
+     *
+     * Developed by: shifmans
+     */
+    public int getMortgageValue() {
+        return mortgageValue;
+    }
+
+    /**
+     * Gets the unmortgage value of a GameTile.
+     * @return The unmortgage value of a GameTile.
+     */
+    public int getUnmortgageValue() {
+        return unmortgageValue;
+    }
+
+    /**
+     * Gets the mortgaged status of a GameTile.
+     * @return The mortgaged status of a GameTile.
+     *
+     * Developed by: shifmans
+     */
+    public boolean isMortgaged() {
+        return isMortgaged;
+    }
+
+    /**
+     * Sets the mortgaged status of a GameTile.
+     * @param isMortgaged The mortgaged status of a GameTile.
+     *
+     * Developed by: shifmans
+     */
+    public void setMortgagedStatus(boolean isMortgaged) {
+        this.isMortgaged = isMortgaged;
+    }
+
+    /**
+     * Gets the owner of a GameTile.
+     * @return The owner of a GameTile.
+     *
+     * Developed by: shifmans
+     */
+    public String getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the owner of a GameTile.
+     * @param owner The owner of a GameTile.
+     *
+     * Developed by: shifmans
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 }

@@ -1,6 +1,7 @@
 package org.monopoly.Model.GameTiles;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Cards.ChanceDeck;
 import org.monopoly.Model.Cards.CommunityChestDeck;
 
@@ -137,14 +138,14 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensNoTokens() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         ArrayList<String> tokens = new ArrayList<>();
         assertEquals(tokens, space.getTokens());
     }
 
     @Test
     public void testPropertySpaceTokensAddOneToken() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -154,7 +155,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensAddTwoToken() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -166,7 +167,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensAddOneTokenUnderCapacity() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -182,7 +183,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensAddTokenToCapacity() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -199,7 +200,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensAddOneTokenOverCapacity() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -217,7 +218,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensAddOneRemoveOneToken() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -231,7 +232,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensAddTwoRemoveOneToken() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -247,7 +248,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testPropertySpaceTokensNoTokensRemoveOneToken() {
-        PropertySpace space = new PropertySpace("Property Space", "", 0,0, "");
+        PropertySpace space = new PropertySpace("Property Space", "", 0,new ArrayList<>(), ColorGroup.BROWN, 0, 0, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.removeToken("Dog");
@@ -617,14 +618,14 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensNoTokens() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         ArrayList<String> tokens = new ArrayList<>();
         assertEquals(tokens, space.getTokens());
     }
 
     @Test
     public void testRailroadSpaceTokensAddOneToken() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -634,7 +635,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensAddTwoToken() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -646,7 +647,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensAddOneTokenUnderCapacity() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -662,7 +663,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensAddTokenToCapacity() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -679,7 +680,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensAddOneTokenOverCapacity() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -697,7 +698,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensAddOneRemoveOneToken() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -711,7 +712,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensAddTwoRemoveOneToken() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -727,7 +728,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testRailroadSpaceTokensNoTokensRemoveOneToken() {
-        RailroadSpace space = new RailroadSpace();
+        RailroadSpace space = new RailroadSpace("Reading Railroad", "", 200, new ArrayList<>(), ColorGroup.RAILROAD, 100);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.removeToken("Dog");
@@ -857,14 +858,14 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensNoTokens() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         ArrayList<String> tokens = new ArrayList<>();
         assertEquals(tokens, space.getTokens());
     }
 
     @Test
     public void testElectricCompanySpaceTokensAddOneToken() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -874,7 +875,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensAddTwoToken() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -886,7 +887,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensAddOneTokenUnderCapacity() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -902,7 +903,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensAddTokenToCapacity() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -919,7 +920,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensAddOneTokenOverCapacity() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -937,7 +938,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensAddOneRemoveOneToken() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -951,7 +952,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensAddTwoRemoveOneToken() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -967,7 +968,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testElectricCompanySpaceTokensNoTokensRemoveOneToken() {
-        ElectricCompanySpace space = new ElectricCompanySpace();
+        ElectricCompanySpace space = new ElectricCompanySpace("", 150, new ArrayList<>(), ColorGroup.UTILITY, 75);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.removeToken("Dog");
@@ -977,14 +978,14 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensNoTokens() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         ArrayList<String> tokens = new ArrayList<>();
         assertEquals(tokens, space.getTokens());
     }
 
     @Test
     public void testWaterWorksSpaceTokensAddOneToken() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -994,7 +995,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensAddTwoToken() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -1006,7 +1007,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensAddOneTokenUnderCapacity() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -1022,7 +1023,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensAddTokenToCapacity() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -1039,7 +1040,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensAddOneTokenOverCapacity() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         space.addToken("Dog");
         space.addToken("Hat");
         space.addToken("Iron");
@@ -1057,7 +1058,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensAddOneRemoveOneToken() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -1071,7 +1072,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensAddTwoRemoveOneToken() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.addToken("Dog");
@@ -1087,7 +1088,7 @@ public class ElementSpacesTokensTests {
 
     @Test
     public void testWaterWorksSpaceTokensNoTokensRemoveOneToken() {
-        WaterWorksSpace space = new WaterWorksSpace();
+        WaterWorksSpace space = new WaterWorksSpace("", 0, new ArrayList<>(), ColorGroup.UTILITY, 0);
         ArrayList<String> tokens = new ArrayList<>();
 
         space.removeToken("Dog");

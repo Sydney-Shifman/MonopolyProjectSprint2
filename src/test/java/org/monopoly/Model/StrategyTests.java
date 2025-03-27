@@ -2,19 +2,10 @@ package org.monopoly.Model;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-import org.monopoly.Model.Strategy;
-import org.monopoly.Exceptions.InsufficientFundsException;
-import org.monopoly.Model.Cards.ChanceDeck;
-import org.monopoly.Model.Cards.CommunityChestDeck;
 import org.monopoly.Model.GameTiles.*;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 import org.monopoly.Model.Players.Token;
-
-import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * This test Class focuses on and tests that every single possible strategy and process for every single tile

@@ -32,7 +32,7 @@ The Monopoly Game Project is designed to provide a fun and interactive way to pl
 Monopoly. The game can be played by one user against the computer and has features like:
 
 Buying and selling properties
-Collecting rent
+Collecting rentgit co
 Drawing chance and community chest cards
 Building houses and hotels
 

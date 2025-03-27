@@ -31,6 +31,10 @@ public class GoToJailSpace extends GameTile {
     }
 
     /**
+     * Executes the strategy for the GoToJailSpace.
+     * @author crevelings
+     */
+    /**
      * Player goes directly to Jail after landing on element space.
      * @return Instructions for going directly to Jail.
      *

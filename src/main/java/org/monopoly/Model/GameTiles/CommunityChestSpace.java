@@ -43,6 +43,10 @@ public class CommunityChestSpace extends GameTile {
         return "Draw a card from the deck";
     }
 
+    /**
+     * Executes the strategy for the CommunityChestSpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
     }

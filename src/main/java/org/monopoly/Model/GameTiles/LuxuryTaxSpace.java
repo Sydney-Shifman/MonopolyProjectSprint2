@@ -40,6 +40,10 @@ public class LuxuryTaxSpace extends GameTile {
         return "Pay $100 in Luxury Tax!";
     }
 
+    /**
+     * Executes the strategy for the Luxury Tax Space.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
         player.subtractFromBalance(100);

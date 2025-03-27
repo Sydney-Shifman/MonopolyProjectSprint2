@@ -128,6 +128,10 @@ public class ElectricCompanySpace extends GameTile {
         return mortgageValue;
     }
 
+    /**
+     * Executes the strategy for the ElectricCompanySpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
         if (player.hasProperty(getName())) {

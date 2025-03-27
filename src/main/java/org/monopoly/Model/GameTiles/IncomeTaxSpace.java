@@ -40,6 +40,10 @@ public class IncomeTaxSpace extends GameTile {
         return "Pay $200 in Income Tax!";
     }
 
+    /**
+     * Executes the strategy for the IncomeTaxSpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
         player.subtractFromBalance(200);

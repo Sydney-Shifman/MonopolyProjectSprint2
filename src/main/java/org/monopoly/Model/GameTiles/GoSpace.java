@@ -41,6 +41,10 @@ public class GoSpace extends GameTile {
         return "Collect $200 in salary for Passing Go!";
     }
 
+    /**
+     * Executes the strategy for the GoSpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
         player.addToBalance(200);

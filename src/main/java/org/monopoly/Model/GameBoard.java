@@ -5,7 +5,6 @@ import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Cards.CommunityChestDeck;
 import org.monopoly.Model.GameTiles.*;
 import org.monopoly.Model.Players.Player;
-import org.monopoly.Model.Players.Token;
 
 import java.util.*;
 

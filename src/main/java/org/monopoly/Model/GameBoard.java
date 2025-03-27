@@ -153,9 +153,6 @@ public class GameBoard {
         return communityChestDeck.drawCard();
     }
 
-    public void returnCommunityChestCard(String card) {
-        communityChestDeck.returnCardToDeck(card);
-    }
     /**
      * Draws a card from the Chance deck.
      * @return The card drawn from the Chance deck.

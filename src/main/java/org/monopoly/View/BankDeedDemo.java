@@ -1,14 +1,13 @@
 package org.monopoly.View;
 
 import org.monopoly.Model.Banker;
+import org.monopoly.Model.Cards.TitleDeedCards;
+import org.monopoly.Model.GameTiles.GameTile;
 import org.monopoly.Model.GameTiles.PropertySpace;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Token;
-
-import javax.xml.transform.Source;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
-import java.util.SortedMap;
 
 public class BankDeedDemo {
     public static void main(String[] args) {
@@ -20,6 +19,13 @@ public class BankDeedDemo {
 
         playerList.add(player1);
         playerList.add(player2);
+
+        System.out.println("All TitleDeedCards:");
+        for (String propertyName: banker.getDeck().getTitleDeeds().getProperties().keySet()) {
+            GameTile property = banker.getDeck().getTitleDeeds().getProperties().get(propertyName);
+            System.out.println(property.getName());
+        }
+        System.out.println("Total TitleDeedCards: " + banker.getDeck().getTitleDeeds().getProperties().size());
 
         System.out.println("Bank Starting Balance: $" + banker.getBalance());
         System.out.println(player1.getName() + " Starting Balance: $" + player1.getBalance());

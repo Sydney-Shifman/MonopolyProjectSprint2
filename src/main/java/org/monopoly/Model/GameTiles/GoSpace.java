@@ -1,6 +1,5 @@
 package org.monopoly.Model.GameTiles;
 
-import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 
 /**

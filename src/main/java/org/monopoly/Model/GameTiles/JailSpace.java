@@ -40,6 +40,10 @@ public class JailSpace extends GameTile {
         return "Pay $50 or roll doubles to get out of jail";
     }
 
+    /**
+     * Executes the strategy for the JailSpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
         if (player.isInJail()) {

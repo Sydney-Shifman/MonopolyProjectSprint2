@@ -234,7 +234,10 @@ public class PropertySpace extends GameTile {
         this.owner = owner;
     }
 
-
+    /**
+     * Executes the strategy for the PropertySpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
         if (player.hasProperty(getName())) {

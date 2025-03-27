@@ -40,6 +40,10 @@ public class FreeParkingSpace extends GameTile {
         return "Take a rest, you don't have to do anything";
     }
 
+    /**
+     * Executes the strategy for the FreeParkingSpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
         System.out.println(doNothing());

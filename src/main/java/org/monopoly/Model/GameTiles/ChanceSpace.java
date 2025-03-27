@@ -42,6 +42,10 @@ public class ChanceSpace extends GameTile {
         return "Draw a card from the deck";
     }
 
+    /**
+     * Executes the strategy for the ChanceSpace.
+     * @author crevelings
+     */
     @Override
     public void executeStrategy(Player player) {
     }

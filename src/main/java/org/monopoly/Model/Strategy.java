@@ -10,6 +10,7 @@ public interface Strategy {
     /**
      * Executes the strategy for the given player.
      * @param player The player to execute the strategy for.
+     * @author walshj05
      */
     void executeStrategy(Player player);
 }

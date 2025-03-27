@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class ChanceDeck extends CardDeck {
     /**
      * Creates a deck of chance cards
+     * @author walshj05
      */
     public ChanceDeck() {
         super(ChanceDeck.initializeCards());
@@ -19,6 +20,7 @@ public class ChanceDeck extends CardDeck {
     /**
      * Initializes the chance cards
      * Later on this will be replaced by a more efficient initialization method
+     * @author walshj05
      * @return ArrayList of chance cards
      */
     private static ArrayList<String> initializeCards(){
@@ -43,6 +45,7 @@ public class ChanceDeck extends CardDeck {
 
     /**
      * Draws a card from the top of the deck, and places it in the discard pile
+     * @author walshj05
      * @return String header of the card drawn
      */
     @Override
@@ -59,6 +62,7 @@ public class ChanceDeck extends CardDeck {
 
     /**
      * Returns the card to the discard pile
+     * @author walshj05
      */
     public void returnCardToDeck(String card) {
         if (unavailableCards.contains(card)) {
@@ -67,11 +71,21 @@ public class ChanceDeck extends CardDeck {
         }
     }
 
+    /**
+     * Executes the strategy for the player
+     * @param player The player to execute the strategy for.
+     * @author walshj05
+     */
     @Override
     public void executeStrategy(Player player) {
     }
 
-    // todo add a method for the player to use a chance card
+    /**
+     * Executes the strategy for the player and uses a specific strategy for a specific card
+     * @param player The player to execute the strategy for.
+     * @param card The card to execute the strategy for.
+     * @author walshj05
+     */
     public void executeStrategy(Player player, String card) {
         switch (card) {
             case "Advance to Boardwalk.":

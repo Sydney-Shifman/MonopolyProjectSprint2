@@ -18,6 +18,7 @@ public abstract class CardDeck implements Strategy {
     /**
      * Creates a deck of cards from an arraylist of cards
      * Shuffles the draw deck
+     * @author walshj05
      * @param drawPile ArrayList of cards
      */
     public CardDeck(ArrayList<String> drawPile) {
@@ -30,6 +31,7 @@ public abstract class CardDeck implements Strategy {
 
     /**
      * Draws a card from the draw pile
+     * @author walshj05
      * @return String of the card drawn
      */
     public abstract String drawCard();

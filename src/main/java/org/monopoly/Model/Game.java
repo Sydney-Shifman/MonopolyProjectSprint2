@@ -16,6 +16,12 @@ public class Game {
     private TurnManager turnManager;
     private Dice dice;
 
+    /**
+     * Constructor for the Game class
+     * @param numHumanPlayers Number of human players in the game
+     * @param playerTokens Array of Tokens for the players
+     * @author walshj05
+     */
     public Game(int numHumanPlayers, Token[] playerTokens) {
         if (numHumanPlayers < 2 || numHumanPlayers > 4) {
             throw new IllegalArgumentException("Invalid number of players");
@@ -33,6 +39,7 @@ public class Game {
 
     /**
      * Allows the current player to take their turn
+     * @author walshj05
      */
     public void playerTakeTurn(){
         int doublesNeeded = 0;
@@ -73,6 +80,7 @@ public class Game {
 
     /**
      * Continues to the next players turn (ends the current players turn)
+     * @author walshj05
      */
     public void nextPlayersTurn(){
         turnManager.nextPlayer();
@@ -81,6 +89,7 @@ public class Game {
     /**
      * Logic for a player's turn while in jail
      * @param player Player object
+     * @author walshj05
      */
     public void jailTurnLogic(Player player){
         if (player.getJailTurns() == 3){
@@ -104,6 +113,7 @@ public class Game {
     /**
      * Removes a player from the game.
      * @param player Player object
+     * @author walshj05
      */
     public void removePlayer(Player player){
         turnManager.removePlayer(player);
@@ -112,6 +122,7 @@ public class Game {
     /**
      * Gets the TurnManager object for testing purposes
      * @return TurnManager object
+     * @author walshj05
      */
     public TurnManager getTurnManager() {
         return turnManager;

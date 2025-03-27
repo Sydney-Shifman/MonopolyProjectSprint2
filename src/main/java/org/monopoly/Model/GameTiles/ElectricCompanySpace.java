@@ -19,6 +19,7 @@ public class ElectricCompanySpace extends GameTile {
     private int mortgageValue;
     private int unmortgageValue;
     private boolean isMortgaged;
+    private String owner;
 
     /**
      * Constructor to initialize a ElectricCompanySpace with all information.
@@ -38,6 +39,8 @@ public class ElectricCompanySpace extends GameTile {
         this.mortgageValue = mortgageValue;
         this.unmortgageValue = mortgageValue + (int) (mortgageValue * 0.1); //Mortgage value plus 10% interest
         this.isMortgaged = false;
+        this.owner = "";
+
     }
 
     /**
@@ -126,6 +129,54 @@ public class ElectricCompanySpace extends GameTile {
      */
     public int getMortgageValue() {
         return mortgageValue;
+    }
+
+    /**
+     * Gets the unmortgage value of a ElectricCompanySpace.
+     * @return The unmortgage value of a ElectricCompanySpace.
+     */
+    public int getUnmortgageValue() {
+        return unmortgageValue;
+    }
+
+    /**
+     * Gets the mortgaged status of a ElectricCompanySpace.
+     * @return The mortgaged status of a ElectricCompanySpace.
+     *
+     * Developed by: shifmans
+     */
+    public boolean isMortgaged() {
+        return isMortgaged;
+    }
+
+    /**
+     * Sets the mortgaged status of a ElectricCompanySpace.
+     * @param isMortgaged The mortgaged status of a ElectricCompanySpace.
+     *
+     * Developed by: shifmans
+     */
+    public void setMortgagedStatus(boolean isMortgaged) {
+        this.isMortgaged = isMortgaged;
+    }
+
+    /**
+     * Gets the owner of a ElectricCompanySpace.
+     * @return The owner of a ElectricCompanySpace.
+     *
+     * Developed by: shifmans
+     */
+    public String getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the owner of a ElectricCompanySpace.
+     * @param owner The owner of a ElectricCompanySpace.
+     *
+     * Developed by: shifmans
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     /**

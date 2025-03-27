@@ -3,14 +3,31 @@ package org.monopoly.Model.Cards;
 import org.monopoly.Model.GameTiles.*;
 import java.util.*;
 
+/**
+ * TitleDeedCards class represents the title deed cards in the game of Monopoly.
+ * It initializes the properties with their respective details such as name, price, rent prices, color group, etc.
+ *
+ * Developed by: shifmans
+ */
 public class TitleDeedCards {
     private HashMap<String, GameTile> properties;
 
+    /**
+     * Constructor for TitleDeedCards.
+     * Initializes the properties with their respective details.
+     *
+     * Developed by: shifmans
+     */
     public TitleDeedCards() {
         this.properties = new HashMap<>();
         initializeCards();
     }
 
+    /**
+     * Initializes the properties with their respective details.
+     *
+     * Developed by: shifmans
+     */
     private void initializeCards() {
         ArrayList<Integer> rentPrices = new ArrayList<>();
 
@@ -81,6 +98,18 @@ public class TitleDeedCards {
         properties.put("Water Works", new WaterWorksSpace("Buy Property, Pay Rent, Mortgage", 150, rentPrices, ColorGroup.UTILITY, 75));
     }
 
+    /**
+     * Sets the rent prices for a property.
+     * @param rentPrices List of rent prices.
+     * @param basicRent Basic rent price.
+     * @param oneHouseRent Rent price with one house.
+     * @param twoHouseRent Rent price with two houses.
+     * @param threeHouseRent Rent price with three houses.
+     * @param fourHouseRent Rent price with four houses.
+     * @param hotelRent Rent price with a hotel.
+     *
+     * Developed by: shifmans
+     */
     private void setPropertyRentPrices(ArrayList<Integer> rentPrices, int basicRent, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent) {
         rentPrices.clear();
 
@@ -93,6 +122,12 @@ public class TitleDeedCards {
         rentPrices.add(hotelRent);
     }
 
+    /**
+     * Sets the rent prices for a railroad property.
+     * @param rentPrices List of rent prices.
+     *
+     * Developed by: shifmans
+     */
     private void setRailroadRentPrices(ArrayList<Integer> rentPrices) {
         rentPrices.clear();
 
@@ -102,6 +137,12 @@ public class TitleDeedCards {
         rentPrices.add(200);
     }
 
+    /**
+     * Sets the rent prices for a utility property.
+     * @param rentPrices List of rent prices.
+     *
+     * Developed by: shifmans
+     */
     private void setUtilitiesRentPriceMultiplier(ArrayList<Integer> rentPrices) {
         rentPrices.clear();
 
@@ -109,10 +150,23 @@ public class TitleDeedCards {
         rentPrices.add(10);
     }
 
+    /**
+     * Returns the properties of the TitleDeedCards.
+     * @return HashMap of properties.
+     *
+     * Developed by: shifmans
+     */
     public HashMap<String, GameTile> getProperties() {
         return this.properties;
     }
 
+    /**
+     * Returns a specific property based on its name.
+     * @param propertyName Name of the property.
+     * @return GameTile object representing the property.
+     *
+     * Developed by: shifmans
+     */
     public GameTile getProperty(String propertyName) {
         return this.properties.get(propertyName);
     }

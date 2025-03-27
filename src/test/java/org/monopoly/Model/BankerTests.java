@@ -45,6 +45,7 @@ public class BankerTests {
 
         assertEquals(deckSize - 1, deck.getSize());
         assertEquals("Bob", deck.getTitleDeeds().getProperty("Boardwalk").getOwner());
+        assertEquals(1100, player.getBalance());
     }
 
     @Test
@@ -52,17 +53,25 @@ public class BankerTests {
         Banker banker = new Banker();
         int houses = banker.getHouses();
 
-        banker.sellHouse("Boardwalk");
+        HumanPlayer player = new HumanPlayer("Bob", new Token("Thimble", "Thimble.png"));
+        banker.sellHouse("Boardwalk", player);
+
         assertEquals(houses - 1, banker.getHouses());
+        assertEquals(1300, player.getBalance());
+
     }
 
     @Test
-    public void testBuyHouses() {
+    public void testReceiveHouses() {
         Banker banker = new Banker();
         int houses = banker.getHouses();
 
-        banker.buyHouses("Boardwalk");
+        HumanPlayer player = new HumanPlayer("Bob", new Token("Thimble", "Thimble.png"));
+        banker.receiveHouse("Boardwalk", player);
+
         assertEquals(houses + 1, banker.getHouses());
+        assertEquals(1600, player.getBalance());
+
     }
 
     @Test
@@ -70,17 +79,24 @@ public class BankerTests {
         Banker banker = new Banker();
         int hotels = banker.getHotels();
 
-        banker.sellHotel("Boardwalk");
+        HumanPlayer player = new HumanPlayer("Bob", new Token("Thimble", "Thimble.png"));
+        banker.sellHotel("Boardwalk", player);
+
         assertEquals(hotels - 1, banker.getHotels());
+        assertEquals(1300, player.getBalance());
+
     }
 
     @Test
-    public void testBuyHotels() {
+    public void testReceiveHotels() {
         Banker banker = new Banker();
         int hotels = banker.getHotels();
+        HumanPlayer player = new HumanPlayer("Jim", new Token("Thimble", "Thimble.png"));
 
-        banker.buyHotels("Boardwalk");
+        banker.receiveHotel("Boardwalk", player);
         assertEquals(hotels + 1, banker.getHotels());
+        assertEquals(1600, player.getBalance());
+
     }
 
     @Test

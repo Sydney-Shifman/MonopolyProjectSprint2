@@ -3,6 +3,7 @@ package org.monopoly.Model;
 import org.monopoly.Model.GameTiles.PropertySpace;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Cards.TitleDeedDeck;
+
 import java.util.*;
 
 public class Banker {
@@ -18,9 +19,12 @@ public class Banker {
         this.numHotels = 32;
     }
 
-    //Add money and player component
-    public void sellProperty(String propertyName) {
-        //Mortgaged properties can be sold at an agreed upon price.
+    public void sellProperty(String propertyName, HumanPlayer humanPlayer) {
+        if (deck.getTitleDeeds().getProperty(propertyName).isMortgaged()) {
+            throw new IllegalStateException("Property is mortgaged and cannot be sold.");
+        }
+
+        deck.getTitleDeeds().getProperty(propertyName).setOwner(humanPlayer.getName());
         deck.drawCard(propertyName);
     }
 
@@ -96,92 +100,95 @@ public class Banker {
         }
     }
 
-    public void auctionProperty(String propertyName, ArrayList<String> players) {
+    public void auctionProperty(String propertyName, ArrayList<HumanPlayer> players) {
         int currentBidAmount = 1;
-        HashMap<String, Integer> currentBidding = new HashMap<>();
-        String currentHighestBidder;
+        HashMap<HumanPlayer, Integer> currentBidding = new HashMap<>();
+        Scanner keyboard = new Scanner(System.in);
+        HumanPlayer currentHighestBidder;
         int numRounds = 1;
 
         while (true) {
             if (numRounds == 1) {
                 System.out.println("Starting Bid for " + propertyName + " starting at $" + currentBidAmount);
-            }
-            else {
+            } else {
                 System.out.println("Round " + numRounds + ", the bid now starts at $" + currentBidAmount);
             }
 
-            ArrayList<String> bidders = getCurrentBidders(players);
-            ArrayList<Integer> bidAmounts = getBidAmount(currentBidAmount, bidders);
+            ArrayList<HumanPlayer> bidders = getCurrentBidders(players, currentBidAmount, keyboard);
+            ArrayList<Integer> bidAmounts = getBidAmount(currentBidAmount, bidders, keyboard);
 
-            /*
             if ((numRounds == 1) && (bidders.isEmpty())) {
-                //Return property to pile and get rid of ownership
+                deck.getTitleDeeds().getProperty(propertyName).setOwner("");
+                deck.returnCard(propertyName);
+                break;
             }
-             */
 
             if (bidders.size() <= 1) {
                 endAuction(propertyName, bidders, bidAmounts);
                 break;
             }
 
-            System.out.println(bidders);
-            System.out.println(bidAmounts);
-
             for (int i = 0; i < bidders.size(); i++) {
                 currentBidding.put(bidders.get(i), bidAmounts.get(i));
             }
-            System.out.println(currentBidding);
 
             currentHighestBidder = getHighestBidder(currentBidding);
-            System.out.println(currentHighestBidder);
-
             currentBidAmount = currentBidding.get(currentHighestBidder);
-            System.out.println(currentBidAmount);
 
             numRounds++;
         }
     }
 
-    private void endAuction(String propertyName, ArrayList<String> bidders, ArrayList<Integer> bidAmounts) {
-        //Subtract bid amount from winning player.
-        //Make winning player the new owner.
+    private void endAuction(String propertyName, ArrayList<HumanPlayer> bidders, ArrayList<Integer> bidAmounts) {
+        if (bidders.isEmpty() || bidAmounts.isEmpty()) {
+            System.out.println("No valid bids placed for the property.");
+            return;
+        }
+
         System.out.println("The Auction for " + propertyName + " ended!");
-        System.out.println("Winner: " + bidders.getFirst());
-        System.out.println("Bid Amount: " + bidAmounts.getFirst());
+        System.out.println("Winner: " + bidders.get(0).getName());
+        System.out.println("Bid Amount: $" + bidAmounts.get(0));
+
+        deck.getTitleDeeds().getProperty(propertyName).setOwner(bidders.get(0).getName());
+        bidders.get(0).subtractFromBalance(bidAmounts.get(0));
     }
 
-    //Add timer to countdown the time for response.
-    private ArrayList<String> getCurrentBidders(ArrayList<String> players) {
-        ArrayList<String> bidders = new ArrayList<>();
-        Scanner keyboard = new Scanner(System.in);
+    private ArrayList<HumanPlayer> getCurrentBidders(ArrayList<HumanPlayer> players, int currentBidAmount, Scanner keyboard) {
+        ArrayList<HumanPlayer> bidders = new ArrayList<>();
 
-        //Only asks players who have enough money to bid.
-        for (String player:players) {
-            System.out.println(player + " do you want to bid on this property (Y/N)? ");
-            char answer = keyboard.next().charAt(0);
+        for (HumanPlayer player : players) {
+            if (currentBidAmount <= player.getBalance()) {
+                System.out.println(player.getName() + ", do you want to bid on this property (Y/N)? ");
+                char answer = keyboard.next().charAt(0);
 
-            while ((answer != 'Y') && (answer != 'y') && (answer != 'N') && (answer != 'n')) {
-                System.out.println("Invalid response, " + player + " do you want to bid on this property (Y/N)? ");
-                answer = keyboard.next().charAt(0);
+                //Add countdown timer feature later, 3 seconds to bid
+
+                while ((answer != 'Y') && (answer != 'y') && (answer != 'N') && (answer != 'n')) {
+                    System.out.println("Invalid response, " + player.getName() + " do you want to bid on this property (Y/N)? ");
+                    answer = keyboard.next().charAt(0);
+                }
+
+                if ((answer == 'Y') || (answer == 'y')) {
+                    bidders.add(player);
+                }
             }
 
-            if ((answer == 'Y') || (answer == 'y')) {
-                bidders.add(player);
+            else {
+                System.out.println(player.getName() + " does not have enough money to bid.");
             }
         }
         return bidders;
     }
 
-    private ArrayList<Integer> getBidAmount(int currentBid, ArrayList<String> bidders) {
+    private ArrayList<Integer> getBidAmount(int currentBid, ArrayList<HumanPlayer> bidders, Scanner keyboard) {
         ArrayList<Integer> bidAmounts = new ArrayList<>();
-        Scanner keyboard = new Scanner(System.in);
 
-        for (String bidder:bidders) {
-            System.out.println(bidder + " how much do you want to bid? ");
+        for (HumanPlayer bidder : bidders) {
+            System.out.println(bidder.getName() + ", how much do you want to bid? ");
             int answer = keyboard.nextInt();
 
             while (answer <= currentBid) {
-                System.out.println("Invalid response, " + bidder + " how much do you want to bid? ");
+                System.out.println("Invalid response, " + bidder.getName() + " how much do you want to bid? ");
                 answer = keyboard.nextInt();
             }
 
@@ -191,11 +198,11 @@ public class Banker {
         return bidAmounts;
     }
 
-    private String getHighestBidder(HashMap<String, Integer> currentBidding) {
+    private HumanPlayer getHighestBidder(HashMap<HumanPlayer, Integer> currentBidding) {
         int bid = 0;
-        String highestBidder = "";
+        HumanPlayer highestBidder = null;
 
-        for (String bidder: currentBidding.keySet()) {
+        for (HumanPlayer bidder : currentBidding.keySet()) {
             if (currentBidding.get(bidder) > bid) {
                 bid = currentBidding.get(bidder);
                 highestBidder = bidder;

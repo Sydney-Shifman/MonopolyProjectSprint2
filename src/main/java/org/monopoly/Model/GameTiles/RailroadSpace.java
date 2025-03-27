@@ -100,6 +100,17 @@ public class RailroadSpace extends GameTile {
         return colorGroup;
     }
 
+    /**
+     * Gets the mortgage value of a RailroadSpace.
+     * @return The mortgage value of a RailroadSpace.
+     *
+     * Developed by: shifmans
+     */
+    @Override
+    public int getMortgageValue() {
+        return mortgageValue;
+    }
+
     @Override
     public void executeStrategy(Player player) {
 

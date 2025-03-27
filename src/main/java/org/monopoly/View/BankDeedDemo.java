@@ -1,7 +1,6 @@
 package org.monopoly.View;
 
 import org.monopoly.Model.Banker;
-import org.monopoly.Model.Cards.TitleDeedCards;
 import org.monopoly.Model.GameTiles.GameTile;
 import org.monopoly.Model.GameTiles.PropertySpace;
 import org.monopoly.Model.Players.HumanPlayer;

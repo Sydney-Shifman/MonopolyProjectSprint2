@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
+import org.monopoly.Model.Players.Token;
 
 /**
  * Represents a class to test the Tiles on the Game Board created by GameTile.
@@ -190,5 +191,48 @@ class GameTileTest {
         tile.removeToken("Dog");
         tokens.remove("Dog");
         assertEquals(tokens, tile.getTokens());
+    }
+
+    @Test
+    public void testGameTilePrice() {
+        GameTile tile = new TestGameTile("Tile", "Test Action");
+        assertEquals(0, tile.getPrice());
+    }
+
+    @Test
+    public void testGameTileGetColorGroup() {
+        GameTile tile = new TestGameTile("Tile", "Test Action");
+        assertNull(tile.getColorGroup());
+    }
+
+    @Test
+    public void testGameTileGetMortgageValue() {
+        GameTile tile = new TestGameTile("Tile", "Test Action");
+        assertEquals(0, tile.getMortgageValue());
+    }
+
+    @Test
+    public void testGameTileGetUnmortgageValue() {
+        GameTile tile = new TestGameTile("Tile", "Test Action");
+        assertEquals(0, tile.getUnmortgageValue());
+    }
+
+    @Test
+    public void testGameTileIsMortgaged() {
+        GameTile tile = new TestGameTile("Tile", "Test Action");
+        assertFalse(tile.isMortgaged());
+
+        tile.setMortgagedStatus(true);
+        assertTrue(tile.isMortgaged());
+    }
+
+    @Test
+    public void testGameTileGetOwner() {
+        GameTile tile = new TestGameTile("Tile", "Test Action");
+        assertEquals(null, tile.getOwner());
+
+        HumanPlayer humanPlayer = new HumanPlayer("Bob", new Token("Thimble", "Thimble.png"));
+        tile.setOwner(humanPlayer.getName());
+        assertEquals("Bob", tile.getOwner());
     }
 }

@@ -89,24 +89,4 @@ public class TitleDeedDeckTests {
         assertThrows(IllegalArgumentException.class, () -> deck.returnCard("Mediterranean Avenue"));
         assertEquals(28, deck.getSize());
     }
-
-    /**
-    @Test
-    public void testMediterraneanAvenueTitleDeed() {
-        TitleDeedDeck deck = new TitleDeedDeck();
-
-        assertEquals("\nProperty Name: Mediterranean Avenue" +
-                "\nColor Group: Brown" +
-                "\nPurchase Price: $20" +
-                "\nRent (without houses/hotels): $10" +
-                "\nRent with 1 House: $10" +
-                "\nRent with 2 Houses: $10" +
-                "\nRent with 3 Houses: $10" +
-                "\nRent with 4 Houses: $10" +
-                "\nRent with Hotel: $10" +
-                "\nMortgage Value: $" +
-                "\nHouses: " +
-                "\nHotel: ", deck.displayCardInfo("Mediterranean Avenue"));
-    }
-    */
 }

@@ -1,9 +1,13 @@
 package org.monopoly.Model;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.monopoly.Model.Cards.TitleDeedDeck;
+import org.monopoly.Model.GameTiles.ElectricCompanySpace;
+import org.monopoly.Model.GameTiles.PropertySpace;
+import org.monopoly.Model.GameTiles.WaterWorksSpace;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Token;
 import java.io.ByteArrayInputStream;
@@ -149,5 +153,31 @@ public class BankerTests {
         banker.receiveMoney(humanPlayer, 200);
         assertEquals(1300, humanPlayer.getBalance());
         assertEquals(Double.POSITIVE_INFINITY, banker.getBalance());
+    }
+
+    @Test
+    public void testElectricCompanyGetRent() {
+        Banker banker = new Banker();
+        ElectricCompanySpace electricCompany = (ElectricCompanySpace) banker.getDeck().getTitleDeeds().getProperty("Electric Company");
+
+        assertTrue((electricCompany.getRentPrice(1) >= 8) && (electricCompany.getRentPrice(1) <= 48));
+        assertTrue((electricCompany.getRentPrice(2) >= 20) && (electricCompany.getRentPrice(2) <= 120));
+    }
+
+    @Test
+    public void testWaterWorksGetRent() {
+        Banker banker = new Banker();
+        WaterWorksSpace waterWorks = (WaterWorksSpace) banker.getDeck().getTitleDeeds().getProperty("Water Works");
+
+        assertTrue((waterWorks.getRentPrice(1) >= 8) && (waterWorks.getRentPrice(1) <= 48));
+        assertTrue((waterWorks.getRentPrice(2) >= 20) && (waterWorks.getRentPrice(2) <= 120));
+    }
+
+    @Test
+    public void testUnmortgagedValue() {
+        Banker banker = new Banker();
+        TitleDeedDeck deck = banker.getDeck();
+
+        assertEquals(33, deck.getTitleDeeds().getProperty("Mediterranean Avenue").getUnmortgageValue());
     }
 }

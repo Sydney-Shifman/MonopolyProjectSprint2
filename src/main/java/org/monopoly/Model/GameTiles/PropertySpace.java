@@ -1,6 +1,8 @@
 package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Model.Cards.ColorGroup;
+import org.monopoly.Model.Players.HumanPlayer;
+import org.monopoly.Model.Players.Player;
 
 import java.util.ArrayList;
 
@@ -229,5 +231,11 @@ public class PropertySpace extends GameTile {
      */
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+
+    @Override
+    public void executeStrategy(Player player) {
+
     }
 }

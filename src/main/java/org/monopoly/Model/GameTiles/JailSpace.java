@@ -1,5 +1,7 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Jail Space element on the Game Board's Tiles.
  *
@@ -36,5 +38,15 @@ public class JailSpace extends GameTile {
      */
     private String displayJailInfo() {
         return "Pay $50 or roll doubles to get out of jail";
+    }
+
+    @Override
+    public void executeStrategy(Player player) {
+        if (player.isInJail()) {
+            System.out.println(player.getName() + " is in jail.");
+        }
+        else {
+            System.out.println(player.getName() + " is just visiting jail.");
+        }
     }
 }

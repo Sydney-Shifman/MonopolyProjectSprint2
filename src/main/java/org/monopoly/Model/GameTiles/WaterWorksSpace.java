@@ -2,6 +2,7 @@ package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Dice;
+import org.monopoly.Model.Players.Player;
 
 import java.util.ArrayList;
 
@@ -128,51 +129,8 @@ public class WaterWorksSpace extends GameTile {
         return mortgageValue;
     }
 
-    /**
-     * Gets the unmortgage value of a WaterWorksSpace.
-     * @return The unmortgage value of a WaterWorksSpace.
-     */
-    public int getUnmortgageValue() {
-        return unmortgageValue;
-    }
+    @Override
+    public void executeStrategy(Player player) {
 
-    /**
-     * Gets the mortgaged status of a WaterWorksSpace.
-     * @return The mortgaged status of a WaterWorksSpace.
-     *
-     * Developed by: shifmans
-     */
-    public boolean isMortgaged() {
-        return isMortgaged;
-    }
-
-    /**
-     * Sets the mortgaged status of a WaterWorksSpace.
-     * @param isMortgaged The mortgaged status of a WaterWorksSpace.
-     *
-     * Developed by: shifmans
-     */
-    public void setMortgagedStatus(boolean isMortgaged) {
-        this.isMortgaged = isMortgaged;
-    }
-
-    /**
-     * Gets the owner of a WaterWorksSpace.
-     * @return The owner of a WaterWorksSpace.
-     *
-     * Developed by: shifmans
-     */
-    public String getOwner() {
-        return owner;
-    }
-
-    /**
-     * Sets the owner of a WaterWorksSpace.
-     * @param owner The owner of a WaterWorksSpace.
-     *
-     * Developed by: shifmans
-     */
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 }

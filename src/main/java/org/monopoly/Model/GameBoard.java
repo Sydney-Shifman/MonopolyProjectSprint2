@@ -19,7 +19,6 @@ public class GameBoard {
     private List<GameTile> tiles;
     private CommunityChestDeck communityChestDeck;
     private ChanceDeck chanceDeck;
-    private ArrayList<Token>[] tokens;
 
     /**
      * Constructs a GameSpace object
@@ -29,10 +28,6 @@ public class GameBoard {
         this.communityChestDeck = new CommunityChestDeck();
         this.chanceDeck = new ChanceDeck();
         initializeBoard();
-        tokens = new ArrayList[40];
-        for (int i = 0; i < 40; i++) {
-            tokens[i] = new ArrayList<>();
-        }
     }
 
     /**
@@ -44,7 +39,7 @@ public class GameBoard {
         tiles.add(new GoSpace());
         setPropertyRentPrices(rentPrices, 2, 10, 30, 90, 160, 250);
         tiles.add(new PropertySpace("Mediterranean Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 60, rentPrices, ColorGroup.BROWN, 50, 50, 30));
-        tiles.add(new CommunityChestSpace());
+        tiles.add(new CommunityChestSpace(communityChestDeck));
         setPropertyRentPrices(rentPrices, 4, 20, 60, 180, 320, 450);
         tiles.add(new PropertySpace("Baltic Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 60, rentPrices, ColorGroup.BROWN, 50, 50, 30));
         tiles.add(new IncomeTaxSpace());
@@ -52,7 +47,7 @@ public class GameBoard {
         tiles.add(new RailroadSpace("Reading Railroad", "Buy Property, Pay Rent, Mortgage", 200, rentPrices, ColorGroup.RAILROAD, 100));
         setPropertyRentPrices(rentPrices, 6, 30, 90, 270, 400, 550);
         tiles.add(new PropertySpace("Oriental Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 100, rentPrices, ColorGroup.LIGHT_BLUE, 50, 50, 50));
-        tiles.add(new ChanceSpace());
+        tiles.add(new ChanceSpace(chanceDeck));
         setPropertyRentPrices(rentPrices, 6, 30, 90, 270, 400, 550);
         tiles.add(new PropertySpace("Vermont Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 100, rentPrices, ColorGroup.LIGHT_BLUE, 50, 50, 50));
         setPropertyRentPrices(rentPrices, 8, 40, 100, 300, 450, 600);
@@ -70,7 +65,7 @@ public class GameBoard {
         tiles.add(new RailroadSpace("Pennsylvania Railroad", "Buy Property, Pay Rent, Mortgage", 200, rentPrices, ColorGroup.RAILROAD, 100));
         setPropertyRentPrices(rentPrices, 14, 70, 200, 550, 750, 950);
         tiles.add(new PropertySpace("St. James Place", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 180, rentPrices, ColorGroup.ORANGE, 100, 100, 90));
-        tiles.add(new CommunityChestSpace());
+        tiles.add(new CommunityChestSpace(communityChestDeck));
         setPropertyRentPrices(rentPrices, 14, 70, 200, 550, 750, 950);
         tiles.add(new PropertySpace("Tennessee Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 180, rentPrices, ColorGroup.ORANGE, 100, 100, 90));
         setPropertyRentPrices(rentPrices, 16, 80, 220, 600, 800, 1000);
@@ -78,7 +73,7 @@ public class GameBoard {
         tiles.add(new FreeParkingSpace());
         setPropertyRentPrices(rentPrices, 18, 90, 250, 700, 875, 1050);
         tiles.add(new PropertySpace("Kentucky Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 220, rentPrices, ColorGroup.RED, 150, 150, 110));
-        tiles.add(new ChanceSpace());
+        tiles.add(new ChanceSpace(chanceDeck));
         setPropertyRentPrices(rentPrices, 18, 90, 250, 700, 875, 1050);
         tiles.add(new PropertySpace("Indiana Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 220, rentPrices, ColorGroup.RED, 150, 150, 110));
         setPropertyRentPrices(rentPrices, 20, 100, 300, 750, 925, 1100);
@@ -98,12 +93,12 @@ public class GameBoard {
         tiles.add(new PropertySpace("Pacific Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 300, rentPrices, ColorGroup.GREEN, 200, 200, 150));
         setPropertyRentPrices(rentPrices, 26, 130, 390, 900, 1100, 1275);
         tiles.add(new PropertySpace("North Carolina Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 300, rentPrices, ColorGroup.GREEN, 200, 200, 150));
-        tiles.add(new CommunityChestSpace());
+        tiles.add(new CommunityChestSpace(communityChestDeck));
         setPropertyRentPrices(rentPrices, 28, 150, 450, 1000, 1200, 1400);
         tiles.add(new PropertySpace("Pennsylvania Avenue", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 320, rentPrices, ColorGroup.GREEN, 200, 200, 160));
         setRailroadRentPrices(rentPrices);
         tiles.add(new RailroadSpace("Short Line Railroad", "Buy Property, Pay Rent, Mortgage", 200, rentPrices, ColorGroup.RAILROAD, 100));
-        tiles.add(new ChanceSpace());
+        tiles.add(new ChanceSpace(chanceDeck));
         setPropertyRentPrices(rentPrices, 35, 175, 500, 1100, 1300, 1500);
         tiles.add(new PropertySpace("Park Place", "Buy Property, Pay Rent, Buy Houses/Hotel, Mortgage", 350, rentPrices, ColorGroup.DARK_BLUE, 200, 200, 175));
         tiles.add(new LuxuryTaxSpace());
@@ -175,26 +170,6 @@ public class GameBoard {
     }
 
     /**
-     * Adds a specified token to a specified position on the game board.
-     * @param position The position on the game board.
-     * @param token The token to add to the position.
-     * @author walshj05
-     */
-    public void addToken(int position, Token token) {
-        tokens[position].add(token);
-    }
-
-    /**
-     * Removes a specified token from a specified position on the game board.
-     * @param position The position on the game board.
-     * @param token The token to remove from the position.
-     * @author walshj05
-     */
-    public void removeToken(int position, Token token) {
-        tokens[position].remove(token);
-    }
-
-    /**
      * Executes a strategy of specified type for a player.
      * @param player The player to execute the strategy for.
      * @param type The type of strategy to execute. (i.e. "tile", "community:card", "chance:card")
@@ -202,11 +177,17 @@ public class GameBoard {
     public void executeStrategyType(Player player, String type) {
         if (Objects.equals(type, "tile")) {
             GameTile currTile = tiles.get(player.getPosition());
+            if (currTile instanceof ChanceSpace) {
+                chanceDeck.executeStrategy(player, drawChanceCard());
+            } else if (currTile instanceof CommunityChestSpace) {
+                communityChestDeck.executeStrategy(player, drawCommunityChestCard());
+            } else {
 //            currTile.executeStrategy(player);
-        } else if (type.contains("community:")){
+            }
+        } else if (type.contains("community:")){ // player uses get out of jail card
             String card = type.split(":")[1];
             communityChestDeck.executeStrategy(player, card);
-        } else if (type.contains("chance:")) {
+        } else if (type.contains("chance:")) { // player uses get out of jail card
             String card = type.split(":")[1];
             chanceDeck.executeStrategy(player, card);
         }

@@ -1,7 +1,9 @@
 package org.monopoly.Model.GameTiles;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Model.Cards.ChanceDeck;
 import org.monopoly.Model.Cards.ColorGroup;
+import org.monopoly.Model.Cards.CommunityChestDeck;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -83,28 +85,28 @@ public class ElementSpacesLandOnTests {
 
     @Test
     public void testCommunityChestSpaceLandOnCorrectActions() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
 
         assertEquals("Draw a card from the deck", space.landOn());
     }
 
     @Test
     public void testCommunityChestSpaceLandOnIncorrectActions() {
-        CommunityChestSpace space = new CommunityChestSpace();
+        CommunityChestSpace space = new CommunityChestSpace(new CommunityChestDeck());
 
         assertNotEquals("Return a card to the deck", space.landOn());
     }
 
     @Test
     public void testChanceSpaceLandOnCorrectActions() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
 
         assertEquals("Draw a card from the deck", space.landOn());
     }
 
     @Test
     public void testChanceSpaceLandOnIncorrectActions() {
-        ChanceSpace space = new ChanceSpace();
+        ChanceSpace space = new ChanceSpace(new ChanceDeck());
 
         assertNotEquals("Pay $50 or roll doubles to get out of jail", space.landOn());
     }

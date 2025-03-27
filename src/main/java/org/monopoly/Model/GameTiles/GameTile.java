@@ -1,6 +1,7 @@
 package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Model.Cards.ColorGroup;
+import org.monopoly.Model.Strategy;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author shifmans
  */
-public abstract class GameTile {
+public abstract class GameTile implements Strategy {
     protected String name;
     protected String actions;
     protected ArrayList<String> tokens;

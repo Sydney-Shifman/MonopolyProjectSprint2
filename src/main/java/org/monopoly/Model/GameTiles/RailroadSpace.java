@@ -1,6 +1,7 @@
 package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Model.Cards.ColorGroup;
+import org.monopoly.Model.Players.Player;
 
 import java.util.ArrayList;
 
@@ -99,61 +100,8 @@ public class RailroadSpace extends GameTile {
         return colorGroup;
     }
 
-    /**
-     * Gets the mortgage value of a ElectricCompanySpace.
-     * @return The mortgage value of a ElectricCompanySpace.
-     *
-     * Developed by: shifmans
-     */
-    public int getMortgageValue() {
-        return mortgageValue;
-    }
+    @Override
+    public void executeStrategy(Player player) {
 
-    /**
-     * Gets the unmortgage value of a ElectricCompanySpace.
-     * @return The unmortgage value of a ElectricCompanySpace.
-     */
-    public int getUnmortgageValue() {
-        return unmortgageValue;
-    }
-
-    /**
-     * Gets the mortgaged status of a ElectricCompanySpace.
-     * @return The mortgaged status of a ElectricCompanySpace.
-     *
-     * Developed by: shifmans
-     */
-    public boolean isMortgaged() {
-        return isMortgaged;
-    }
-
-    /**
-     * Sets the mortgaged status of a ElectricCompanySpace.
-     * @param isMortgaged The mortgaged status of a ElectricCompanySpace.
-     *
-     * Developed by: shifmans
-     */
-    public void setMortgagedStatus(boolean isMortgaged) {
-        this.isMortgaged = isMortgaged;
-    }
-
-    /**
-     * Gets the owner of a ElectricCompanySpace.
-     * @return The owner of a ElectricCompanySpace.
-     *
-     * Developed by: shifmans
-     */
-    public String getOwner() {
-        return owner;
-    }
-
-    /**
-     * Sets the owner of a ElectricCompanySpace.
-     * @param owner The owner of a ElectricCompanySpace.
-     *
-     * Developed by: shifmans
-     */
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 }

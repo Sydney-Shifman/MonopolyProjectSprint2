@@ -1,19 +1,23 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Model.Cards.ChanceDeck;
+import org.monopoly.Model.Players.Player;
+
 /**
  * Represents the Chance Space element on the Game Board's Tiles.
  *
  * @author shifmans
  */
 public class ChanceSpace extends GameTile {
-
+    private ChanceDeck deck;
     /**
      * Constructor to initialize a ChanceSpace.
      *
      * Developed by: shifmans
      */
-    public ChanceSpace() {
+    public ChanceSpace(ChanceDeck deck) {
         super("Chance Space", "");
+        this.deck = deck;
     }
 
     /**
@@ -36,5 +40,9 @@ public class ChanceSpace extends GameTile {
      */
     private String drawCard() {
         return "Draw a card from the deck";
+    }
+
+    @Override
+    public void executeStrategy(Player player) {
     }
 }

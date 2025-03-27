@@ -195,6 +195,11 @@ public class HumanPlayer extends Player {
      * @throws HouseCannotBeBuiltException exception
      */
     public void addHouse(String property, String colorGroup) throws HouseCannotBeBuiltException {
+        if (hasMonopoly(colorGroup)) {
+            numHouses++;
+        } else {
+            throw new HouseCannotBeBuiltException("You do not have a monopoly on " + colorGroup);
+        }
     }
 
     /**
@@ -203,6 +208,12 @@ public class HumanPlayer extends Player {
      * @throws HotelCannotBeBuiltException exception
      */
     public void addHotel(String property) throws HotelCannotBeBuiltException {
+        if (numHouses == 4) {
+            numHouses = 0;
+            numHotels++;
+        } else {
+            throw new HotelCannotBeBuiltException("You do not have 4 houses on " + property);
+        }
     }
 
     /**

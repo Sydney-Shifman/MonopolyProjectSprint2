@@ -108,4 +108,12 @@ public class Game {
     public void removePlayer(Player player){
         turnManager.removePlayer(player);
     }
+
+    /**
+     * Gets the TurnManager object for testing purposes
+     * @return TurnManager object
+     */
+    public TurnManager getTurnManager() {
+        return turnManager;
+    }
 }

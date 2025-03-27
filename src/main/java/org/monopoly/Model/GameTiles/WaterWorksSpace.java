@@ -1,5 +1,6 @@
 package org.monopoly.Model.GameTiles;
 
+import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Dice;
 import org.monopoly.Model.Players.Player;
@@ -131,6 +132,20 @@ public class WaterWorksSpace extends GameTile {
 
     @Override
     public void executeStrategy(Player player) {
-
+        if (player.hasProperty(getName())) {
+            System.out.println("You already own the " + getName() + "!");
+        } else {
+            if (owner == null || owner.isEmpty()) { // Proper null check
+                System.out.println("You can buy the " + getName() + " for $" + price);
+                System.out.println("Or property can be auctioned");
+            } else {
+                System.out.println(getOwner() + " already owns the " + getName() + "!");
+            }
+            try {
+                player.purchaseProperty(getName(), price);
+            } catch (InsufficientFundsException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

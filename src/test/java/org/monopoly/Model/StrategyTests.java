@@ -2,10 +2,18 @@ package org.monopoly.Model;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.monopoly.Model.Cards.ColorGroup.BROWN;
+import static org.monopoly.Model.Cards.ColorGroup.RAILROAD;
+
+import org.monopoly.Exceptions.InsufficientFundsException;
+import org.monopoly.Model.Cards.ChanceDeck;
+import org.monopoly.Model.Cards.CommunityChestDeck;
 import org.monopoly.Model.GameTiles.*;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 import org.monopoly.Model.Players.Token;
+
+import java.util.ArrayList;
 
 /**
  * This test Class focuses on and tests that every single possible strategy and process for every single tile
@@ -124,61 +132,247 @@ public class StrategyTests {
         System.out.println("Player's final balance: " + finalBalance);
     }
 
-//    @Test
-//    public void testPlayerDoesNotOwnElectricCompany() {
-//        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
-//        Strategy strategy = new ElectricCompanySpace();
-//        HumanPlayer player = new HumanPlayer("Test Player", token);
-//        player.move(12);
-//        strategy.executeStrategy(player);
-//        assertFalse(player.hasProperty("Electric Company"), "Player should not own Electric Company.");
-//    }
+    @Test
+    public void testChanceSpace() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        Strategy strategy = new ChanceSpace(new ChanceDeck());
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        strategy.executeStrategy(player);
+        assertEquals(1500, player.getBalance(), "Player's balance should be the same after landing on chance space.");
+    }
 
-//    @Test
-//    public void testPlayerOwnsElectricCompany() throws InsufficientFundsException {
-//        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
-//        Strategy strategy = new ElectricCompanySpace();
-//        HumanPlayer player = new HumanPlayer("Test Player", token);
-//        player.move(12);
-//        player.purchaseProperty("Electric Company", 150);
-//        strategy.executeStrategy(player);
-//        assertTrue(player.hasProperty("Electric Company"), "Player should own Electric Company.");
-//        System.out.println("Player has Electric Company: " + player.hasProperty("Electric Company"));
-//    }
+    @Test
+    public void testCommunityChestSpace() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        Strategy strategy = new CommunityChestSpace(new CommunityChestDeck());
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        strategy.executeStrategy(player);
+        assertEquals(1500, player.getBalance(), "Player's balance should be the same after landing on chance space.");
+    }
 
-//    @Test
-//    public void testPlayerBuysElectricCompany() throws InsufficientFundsException {
-//        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
-//        Strategy strategy = new ElectricCompanySpace();
-//        HumanPlayer player = new HumanPlayer("Test Player", token);
-//        player.move(12);
-//        player.purchaseProperty("Electric Company", 150);
-//        strategy.executeStrategy(player);
-//        assertEquals(1350, player.getBalance(), "Player should have $1350 after buying Electric Company.");
-//        System.out.println("Player's final balance: " + player.getBalance());
-//    }
+    @Test
+    public void testPlayerHasElectricCompany() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        ElectricCompanySpace strategy = new ElectricCompanySpace("Electric Company", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            throw new RuntimeException(e);
+        }
+        strategy.executeStrategy(player);
+        assertEquals(1350, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+    }
 
-//    @Test
-//    public void testPlayerDoesOwnWaterworks() throws InsufficientFundsException {
-//        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
-//        Strategy strategy = new WaterWorksSpace();
-//        HumanPlayer player = new HumanPlayer("Test Player", token);
-//        player.move(28);
-//        player.purchaseProperty("Water Works", 150);
-//        strategy.executeStrategy(player);
-//        assertTrue(player.hasProperty("Water Works"), "Player should own Water Works.");
-//        System.out.println("Player has Water Works: " + player.hasProperty("Water Works"));
-//    }
-//
-//    @Test
-//    public void testPlayerDoesNotOwnWaterworks() {
-//        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
-//        Strategy strategy = new WaterWorksSpace();
-//        HumanPlayer player = new HumanPlayer("Test Player", token);
-//        player.move(28);
-//        player.subtractFromBalance(1450);
-//        strategy.executeStrategy(player);
-//        assertFalse(player.hasProperty("Water Works"), "Player should not own Water Works.");
-//        System.out.println("Player does not have Water Works: " + player.hasProperty("Water Works"));
-//    }
+    @Test
+    public void testPlayerDoesNotOwnElectricCompanyAndNoOwner() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        ElectricCompanySpace strategy = new ElectricCompanySpace("Electric Company", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerDoesNotOwnElectricCompanyButSomeoneElseDoes() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        ElectricCompanySpace strategy = new ElectricCompanySpace("Electric Company", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        HumanPlayer owner = new HumanPlayer("Someone Else", token);
+
+        strategy.setOwner(String.valueOf(owner));
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerSuccessfullyBuysElectricCompany() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        ElectricCompanySpace strategy = new ElectricCompanySpace("Electric Company", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+
+        strategy.executeStrategy(player);
+        assertEquals(1350, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+        System.out.println("Player Balance: $" + player.getBalance());
+    }
+
+    @Test
+    public void testNotEnoughMoneyForElectricCompany() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        ElectricCompanySpace strategy = new ElectricCompanySpace("Electric Company", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        player.subtractFromBalance(1400);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            assertEquals("Insufficient funds to purchase Electric Company", e.getMessage(), "Exception should print if not enough money");
+        }
+    }
+
+    @Test
+    public void testPlayerHasWaterWorks() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        WaterWorksSpace strategy = new WaterWorksSpace("Water Works", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            throw new RuntimeException(e);
+        }
+        strategy.executeStrategy(player);
+        assertEquals(1350, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+    }
+    @Test
+    public void testPlayerDoesNotOwnWaterWorksAndNoOwner() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        WaterWorksSpace strategy = new WaterWorksSpace("Water Works", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerDoesNotOwnWaterWorksButSomeoneElseDoes() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        WaterWorksSpace strategy = new WaterWorksSpace("Water Works", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        HumanPlayer owner = new HumanPlayer("Someone Else", token);
+
+        strategy.setOwner(String.valueOf(owner));
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerSuccessfullyBuysWaterWorks() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        WaterWorksSpace strategy = new WaterWorksSpace("Water Works", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+
+        strategy.executeStrategy(player);
+        assertEquals(1350, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+        System.out.println("Player Balance: $" + player.getBalance());
+    }
+
+    @Test
+    public void testNotEnoughMoneyForWaterWorks() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        WaterWorksSpace strategy = new WaterWorksSpace("Water Works", 150, new ArrayList<>(), null, 0);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        player.subtractFromBalance(1400);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            assertEquals("Insufficient funds to purchase Water Works", e.getMessage(), "Exception should print if not enough money");
+        }
+    }
+
+    @Test
+    public void testPlayerHasRailRoad() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        RailroadSpace strategy = new RailroadSpace("B&O Railroad", "", 200, new ArrayList<>(), RAILROAD, 100);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            throw new RuntimeException(e);
+        }
+        strategy.executeStrategy(player);
+        assertEquals(1300, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+    }
+
+    @Test
+    public void testPlayerDoesNotOwnRailRoadAndNoOwner() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        RailroadSpace strategy = new RailroadSpace("B&O Railroad", "", 200, new ArrayList<>(), RAILROAD, 100);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerDoesNotOwnRailRoadButSomeoneElseDoes() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        RailroadSpace strategy = new RailroadSpace("B&O Railroad", "", 200, new ArrayList<>(), RAILROAD, 100);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        HumanPlayer owner = new HumanPlayer("Someone Else", token);
+
+        strategy.setOwner(String.valueOf(owner));
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerSuccessfullyBuysRailRoad() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        RailroadSpace strategy = new RailroadSpace("B&O Railroad", "", 200, new ArrayList<>(), RAILROAD, 100);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+
+        strategy.executeStrategy(player);
+        assertEquals(1300, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+        System.out.println("Player Balance: $" + player.getBalance());
+    }
+
+    @Test
+    public void testNotEnoughMoneyForRailRoad() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        RailroadSpace strategy = new RailroadSpace("B&O Railroad", "", 200, new ArrayList<>(), RAILROAD, 100);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        player.subtractFromBalance(1400);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            assertEquals("Insufficient funds to purchase B&O Railroad", e.getMessage(), "Exception should print if not enough money");
+        }
+    }
+
+    @Test
+    public void testPlayerHasPropertySpace() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        PropertySpace strategy = new PropertySpace("Mediterranean Avenue", "", 60, new ArrayList<>(), BROWN, 50,50,30);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            throw new RuntimeException(e);
+        }
+        assertEquals(1440, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+    }
+
+    @Test
+    public void testPlayerDoesNotPropertySpaceAndNoOwner() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        PropertySpace strategy = new PropertySpace("Mediterranean Avenue", "", 60, new ArrayList<>(), BROWN, 50,50,30);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerDoesNotOwnPropertySpaceButSomeoneElseDoes() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        PropertySpace strategy = new PropertySpace("Mediterranean Avenue", "", 60, new ArrayList<>(), BROWN, 50,50,30);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        HumanPlayer owner = new HumanPlayer("Someone Else", token);
+
+        strategy.setOwner(String.valueOf(owner));
+        strategy.executeStrategy(player);
+    }
+
+    @Test
+    public void testPlayerSuccessfullyBuysProperty() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        PropertySpace strategy = new PropertySpace("Mediterranean Avenue", "", 60, new ArrayList<>(), BROWN, 50,50,30);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+
+        strategy.executeStrategy(player);
+        assertEquals(1440, player.getBalance(), "Player's balance should be at $150 due to buying property.");
+        System.out.println("Player Balance: $" + player.getBalance());
+    }
+
+    @Test
+    public void testNotEnoughMoneyForProperty() {
+        Token token = new Token("Thimble", "TokensPNGs/Thimble.png");
+        RailroadSpace strategy = new RailroadSpace("Mediterranean Avenue", "", 200, new ArrayList<>(), RAILROAD, 100);
+        HumanPlayer player = new HumanPlayer("Test Player", token);
+        player.subtractFromBalance(1400);
+        try {
+            player.purchaseProperty(strategy.getName(), strategy.getPrice());
+        } catch (InsufficientFundsException e) {
+            assertEquals("Insufficient funds to purchase Mediterranean Avenue", e.getMessage(), "Exception should print if not enough money");
+        }
+    }
 }

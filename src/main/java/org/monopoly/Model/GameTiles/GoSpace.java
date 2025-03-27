@@ -38,11 +38,12 @@ public class GoSpace extends GameTile {
      * Developed by: shifmans
      */
     private String collectMoney() {
-        return "Collect $200";
+        return "Collect $200 in salary for Passing Go!";
     }
 
     @Override
     public void executeStrategy(Player player) {
         player.addToBalance(200);
+        System.out.println(collectMoney());
     }
 }

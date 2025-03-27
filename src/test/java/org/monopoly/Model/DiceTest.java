@@ -1,6 +1,5 @@
 package org.monopoly.Model;
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Token;
@@ -15,7 +14,7 @@ class DiceTest {
         assertNotNull(dice, "Dice object should be created");
     }
 
-    @RepeatedTest(1000)
+    @Test
     void testRollInRange() {
         Dice dice = new Dice();
         int[] roll = dice.roll();

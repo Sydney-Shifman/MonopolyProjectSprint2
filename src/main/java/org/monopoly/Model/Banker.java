@@ -25,10 +25,11 @@ public class Banker {
         }
 
         deck.getTitleDeeds().getProperty(propertyName).setOwner(humanPlayer.getName());
+        humanPlayer.subtractFromBalance(deck.getTitleDeeds().getProperty(propertyName).getPrice());
         deck.drawCard(propertyName);
     }
 
-    public void sellHouse(String propertyName) {
+    public void sellHouse(String propertyName, HumanPlayer humanPlayer) {
         if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
             if (this.numHouses == 0) {
                 throw new IllegalStateException("There are no houses left.");
@@ -37,6 +38,7 @@ public class Banker {
                 this.numHouses -= 1;
 
                 int numPropertyHouses = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHouses();
+                humanPlayer.subtractFromBalance(((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getHousePrice());
                 ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHouses(numPropertyHouses+1);
             }
         }
@@ -46,7 +48,7 @@ public class Banker {
         }
     }
 
-    public void buyHouses(String propertyName) {
+    public void receiveHouse(String propertyName, HumanPlayer humanPlayer) {
         if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
             if (this.numHouses == 0) {
                 throw new IllegalStateException("There are no houses left.");
@@ -55,6 +57,7 @@ public class Banker {
                 this.numHouses += 1;
 
                 int numPropertyHouses = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHouses();
+                humanPlayer.addToBalance(((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getHousePrice()/2);
                 ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHouses(numPropertyHouses-1);
             }
         }
@@ -64,7 +67,7 @@ public class Banker {
         }
     }
 
-    public void sellHotel(String propertyName) {
+    public void sellHotel(String propertyName, HumanPlayer humanPlayer) {
         if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
             if (this.numHotels == 0) {
                 throw new IllegalStateException("There are no hotels left.");
@@ -73,6 +76,7 @@ public class Banker {
                 this.numHotels -= 1;
 
                 int numPropertyHotels = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHotels();
+                humanPlayer.subtractFromBalance(((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getHousePrice());
                 ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHotels(numPropertyHotels+1);
             }
         }
@@ -82,7 +86,7 @@ public class Banker {
         }
     }
 
-    public void buyHotels(String propertyName) {
+    public void receiveHotel(String propertyName, HumanPlayer humanPlayer) {
         if (deck.getTitleDeeds().getProperty(propertyName) instanceof PropertySpace) {
             if (this.numHotels == 0) {
                 throw new IllegalStateException("There are no hotels left.");
@@ -91,6 +95,7 @@ public class Banker {
                 this.numHotels += 1;
 
                 int numPropertyHotels = ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getNumHotels();
+                humanPlayer.addToBalance(((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).getHotelPrice()/2);
                 ((PropertySpace) deck.getTitleDeeds().getProperty(propertyName)).setNumHotels(numPropertyHotels-1);
             }
         }

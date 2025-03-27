@@ -72,8 +72,8 @@ public class RailroadSpace extends GameTile {
     }
 
     /**
-     * Gets the price of a ElectricCompanySpace.
-     * @return The price of a ElectricCompanySpace.
+     * Gets the price of a RailroadSpace.
+     * @return The price of a RailroadSpace.
      *
      * Developed by: shifmans
      */
@@ -82,8 +82,8 @@ public class RailroadSpace extends GameTile {
     }
 
     /**
-     * Gets the rent prices of a PropertySpace.
-     * @return The list of rent prices of a PropertySpace.
+     * Gets the rent prices of a RailroadSpace.
+     * @return The list of rent prices of a RailroadSpace.
      *
      * Developed by: shifmans
      */
@@ -92,8 +92,8 @@ public class RailroadSpace extends GameTile {
     }
 
     /**
-     * Gets the color group of a ElectricCompanySpace.
-     * @return The color group of a ElectricCompanySpace.
+     * Gets the color group of a RailroadSpace.
+     * @return The color group of a RailroadSpace.
      *
      * Developed by: shifmans
      */
@@ -110,6 +110,54 @@ public class RailroadSpace extends GameTile {
     @Override
     public int getMortgageValue() {
         return mortgageValue;
+    }
+
+    /**
+     * Gets the unmortgage value of a RailroadSpace.
+     * @return The unmortgage value of a RailroadSpace.
+     */
+    public int getUnmortgageValue() {
+        return unmortgageValue;
+    }
+
+    /**
+     * Gets the mortgaged status of a RailroadSpace.
+     * @return The mortgaged status of a RailroadSpace.
+     *
+     * Developed by: shifmans
+     */
+    public boolean isMortgaged() {
+        return isMortgaged;
+    }
+
+    /**
+     * Sets the mortgaged status of a RailroadSpace.
+     * @param isMortgaged The mortgaged status of a RailroadSpace.
+     *
+     * Developed by: shifmans
+     */
+    public void setMortgagedStatus(boolean isMortgaged) {
+        this.isMortgaged = isMortgaged;
+    }
+
+    /**
+     * Gets the owner of a RailroadSpace.
+     * @return The owner of a RailroadSpace.
+     *
+     * Developed by: shifmans
+     */
+    public String getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the owner of a RailroadSpace.
+     * @param owner The owner of a RailroadSpace.
+     *
+     * Developed by: shifmans
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     /**

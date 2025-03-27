@@ -2,7 +2,6 @@ package org.monopoly.Model.GameTiles;
 
 import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Model.Cards.ColorGroup;
-import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Player;
 
 import java.util.ArrayList;

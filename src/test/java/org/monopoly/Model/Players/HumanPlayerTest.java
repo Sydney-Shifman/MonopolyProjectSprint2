@@ -1,8 +1,11 @@
 package org.monopoly.Model.Players;
 
 import org.junit.jupiter.api.Test;
+import org.monopoly.Exceptions.HotelCannotBeBuiltException;
+import org.monopoly.Exceptions.HouseCannotBeBuiltException;
 import org.monopoly.Exceptions.InsufficientFundsException;
 import org.monopoly.Exceptions.NoSuchPropertyException;
+import org.monopoly.Model.Dice;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -163,4 +166,52 @@ public class HumanPlayerTest {
         assertEquals(1325, humanPlayer.getBalance());
     }
 
+    @Test
+    void playerTakingTurnMovesPlayer() {
+        Dice dice = new Dice();
+        HumanPlayer humanPlayer = new HumanPlayer("John Doe", new Token( "John Doe","BattleShip.png"));
+        assertEquals(0, humanPlayer.getPosition());
+        humanPlayer.takeTurn(dice);
+        assertNotEquals(0, humanPlayer.getPosition());
+    }
+
+    @Test
+    void testPlayerInJailCannotMove(){
+        HumanPlayer humanPlayer = new HumanPlayer("John Doe", new Token( "John Doe","BattleShip.png"));
+        humanPlayer.goToJail();
+        assertEquals(10, humanPlayer.getPosition());
+        humanPlayer.takeTurn(new Dice());
+        assertEquals(10, humanPlayer.getPosition());
+    }
+
+    @Test
+    void testPlayerCanBuyHousesAndHotels() throws InsufficientFundsException, HouseCannotBeBuiltException, HotelCannotBeBuiltException {
+        HumanPlayer humanPlayer = new HumanPlayer("John Doe", new Token( "John Doe","BattleShip.png"));
+        humanPlayer.addToBalance(100000);
+        humanPlayer.purchaseProperty("Park Place", 350);
+        humanPlayer.purchaseProperty("Boardwalk", 400);
+        humanPlayer.addHouse("Park Place", "darkBlue");
+        humanPlayer.addHouse("Park Place", "darkBlue");
+        humanPlayer.addHouse("Boardwalk", "darkBlue");
+        humanPlayer.addHouse("Boardwalk", "darkBlue");
+        assertEquals(4, humanPlayer.getNumHouses());
+        humanPlayer.addHotel("Park Place");
+        assertEquals(0, humanPlayer.getNumHouses());
+        assertEquals(1, humanPlayer.getNumHotels());
+    }
+
+    @Test
+    void playerCanBeInJailForMultipleTurns(){
+        HumanPlayer humanPlayer = new HumanPlayer("John Doe", new Token( "John Doe","BattleShip.png"));
+        humanPlayer.goToJail();
+        assertEquals(10, humanPlayer.getPosition());
+        humanPlayer.takeTurn(new Dice());
+        humanPlayer.incrementJailTurns();
+        assertEquals(10, humanPlayer.getPosition());
+        humanPlayer.incrementJailTurns();
+        assertEquals(10, humanPlayer.getPosition());
+        assertEquals(2, humanPlayer.getJailTurns());
+        humanPlayer.resetJailTurns();
+        assertEquals(0, humanPlayer.getJailTurns());
+    }
 }

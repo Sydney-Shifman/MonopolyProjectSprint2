@@ -1,5 +1,9 @@
 package org.monopoly.Model.Players;
 
+/**
+ * Created token class that has the icons for and sets the icon to be with a player.
+ * @author Sean Creveling
+ */
 public class Token {
     private final String name;
     private final String icon;

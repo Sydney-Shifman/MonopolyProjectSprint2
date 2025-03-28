@@ -8,7 +8,16 @@ import org.monopoly.Model.Players.Token;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
+/**
+ * This class is a demo of the Banker and TitleDeedCard classes.
+ * @author shifmans
+ */
 public class BankDeedDemo {
+
+    /**
+     * This is the main method that demonstrates the functionality of the Banker and TitleDeedCard classes.
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         Banker banker = new Banker();
         ArrayList<HumanPlayer> playerList = new ArrayList<>();

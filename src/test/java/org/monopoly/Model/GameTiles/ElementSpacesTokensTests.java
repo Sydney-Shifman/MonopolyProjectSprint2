@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.monopoly.Model.Cards.ColorGroup;
 import org.monopoly.Model.Cards.ChanceDeck;
 import org.monopoly.Model.Cards.CommunityChestDeck;
-
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,12 +1,9 @@
 package org.monopoly.Model;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.monopoly.Model.Cards.TitleDeedDeck;
 import org.monopoly.Model.GameTiles.ElectricCompanySpace;
-import org.monopoly.Model.GameTiles.PropertySpace;
 import org.monopoly.Model.GameTiles.WaterWorksSpace;
 import org.monopoly.Model.Players.HumanPlayer;
 import org.monopoly.Model.Players.Token;
@@ -130,6 +127,36 @@ public class BankerTests {
     }
 
     @Test
+    public void testMortgageRailroad() {
+        Banker banker = new Banker();
+        TitleDeedDeck deck = banker.getDeck();
+        assertFalse(deck.getTitleDeeds().getProperty("Short Line Railroad").isMortgaged());
+
+        banker.mortgageProperty("Short Line Railroad");
+        assertTrue(deck.getTitleDeeds().getProperty("Short Line Railroad").isMortgaged());
+    }
+
+    @Test
+    public void testMortgageElectricCompany() {
+        Banker banker = new Banker();
+        TitleDeedDeck deck = banker.getDeck();
+        assertFalse(deck.getTitleDeeds().getProperty("Electric Company").isMortgaged());
+
+        banker.mortgageProperty("Electric Company");
+        assertTrue(deck.getTitleDeeds().getProperty("Electric Company").isMortgaged());
+    }
+
+    @Test
+    public void testMortgageWaterWorks() {
+        Banker banker = new Banker();
+        TitleDeedDeck deck = banker.getDeck();
+        assertFalse(deck.getTitleDeeds().getProperty("Water Works").isMortgaged());
+
+        banker.mortgageProperty("Water Works");
+        assertTrue(deck.getTitleDeeds().getProperty("Water Works").isMortgaged());
+    }
+
+    @Test
     public void testPayGoSpace() {
         Banker banker = new Banker();
         HumanPlayer humanPlayer = new HumanPlayer("Bob", new Token("Thimble", "Thimble.png"));
@@ -179,5 +206,8 @@ public class BankerTests {
         TitleDeedDeck deck = banker.getDeck();
 
         assertEquals(33, deck.getTitleDeeds().getProperty("Mediterranean Avenue").getUnmortgageValue());
+        assertEquals(110, deck.getTitleDeeds().getProperty("Short Line Railroad").getUnmortgageValue());
+        assertEquals(82, deck.getTitleDeeds().getProperty("Electric Company").getUnmortgageValue());
+        assertEquals(82, deck.getTitleDeeds().getProperty("Water Works").getUnmortgageValue());
     }
 }

@@ -1,14 +1,8 @@
 package org.monopoly.View;
 
 import org.monopoly.Exceptions.*;
-import org.monopoly.Model.Cards.*;
 import org.monopoly.Model.GameBoard;
-import org.monopoly.Model.GameTiles.*;
 import org.monopoly.Model.Players.*;
-
-import java.util.ArrayList;
-
-import static org.monopoly.Model.Cards.ColorGroup.*;
 
 public class TilesMain {
 

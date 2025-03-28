@@ -2,11 +2,9 @@ package org.monopoly.Model.GameTiles;
 
 import org.junit.jupiter.api.Test;
 import org.monopoly.Model.Cards.ColorGroup;
-
 import java.util.ArrayList;
 import org.monopoly.Model.Cards.ChanceDeck;
 import org.monopoly.Model.Cards.CommunityChestDeck;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
